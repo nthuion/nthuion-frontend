@@ -2,20 +2,37 @@
 
 Frontend of NTHU ION
 
-## Environment setup
+## Prerequisites
+
+* node
+* npm
+
+## Environment Setup
 
 ```bash
 npm install # installs dependencies
 ```
 
-## Run in develop mode
+## Run in Develop Mode
 
 ```bash
 npm run dev
 ```
 
-## Run in production mode
+## Run in Production Mode
 
 ```bash
 npm start
+```
+
+## Run Tests
+
+```bash
+npm test
+```
+
+## Run Lint
+
+```bash
+npm run lint
 ```
