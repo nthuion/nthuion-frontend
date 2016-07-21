@@ -17,5 +17,5 @@ npm run dev
 ## Run in production mode
 
 ```bash
-NODE_ENV=production && npm start
+npm start
 ```
