@@ -1,7 +1,8 @@
 import { push } from 'react-router-redux';
 
 import * as auth from '../containers/Auth/actions';
-export { auth };
+import * as question from '../containers/QuestionListPage/actions';
+export { auth, question };
 
 export const routing = {
   push(path) {

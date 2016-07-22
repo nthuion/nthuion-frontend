@@ -1,7 +1,9 @@
-import { call } from 'redux-saga/effects';
+import { fork } from 'redux-saga/effects';
 import auth from './auth';
+import question from './question';
 
 export default function* rootSaga() {
-  yield call(auth);
+  yield fork(auth);
+  yield fork(question);
 }
 

@@ -1,0 +1,36 @@
+.question-list-item {
+  display: flex;
+
+  .votes {
+    width: 64px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .up-vote,
+    .down-vote {
+      cursor: pointer;
+    }
+
+    .count {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      height: 48px;
+      width: 48px;
+      user-select: none;
+    }
+  }
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tag {
+  margin-right: 4px;
+}
+

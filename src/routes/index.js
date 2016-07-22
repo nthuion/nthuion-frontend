@@ -1,5 +1,5 @@
 import App from '../containers/App';
-import Home from '../containers/App/Home';
+import QuestionListPage from '../containers/QuestionListPage';
 
 /* eslint-disable global-require */
 export function loadModule(callback) {
@@ -23,7 +23,7 @@ function getRoutes(store) {
         }
       },
       indexRoute: {
-        component: Home,
+        component: QuestionListPage,
       },
     }, {
       path: '/login',
