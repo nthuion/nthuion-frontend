@@ -4,7 +4,7 @@ import QuestionList from './QuestionList';
 import Section from '../common/Section';
 import Container from '../common/Container';
 import Subheader from 'material-ui/Subheader';
-import { fetchQuestions } from './actions';
+import { fetchQuestionList } from './actions';
 
 class Question extends Component {
   static propTypes = {
@@ -15,7 +15,7 @@ class Question extends Component {
     this.fetchQuestions();
   }
   fetchQuestions = () => {
-    this.props.dispatch(fetchQuestions());
+    this.props.dispatch(fetchQuestionList());
   };
   render() {
     const { questions } = this.props;

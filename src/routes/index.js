@@ -1,5 +1,5 @@
 import App from '../containers/App';
-import QuestionListPage from '../containers/QuestionListPage';
+import Home from '../containers/App/Home';
 
 /* eslint-disable global-require */
 export function loadModule(callback) {
@@ -23,8 +23,14 @@ function getRoutes(store) {
         }
       },
       indexRoute: {
-        component: QuestionListPage,
+        component: Home,
       },
+      childRoutes: [{
+        path: '/q',
+        getComponent(nextState, callback) {
+          require(['../containers/QuestionListPage'], loadModule(callback));
+        },
+      }],
     }, {
       path: '/login',
       onEnter(nextState, replace) {

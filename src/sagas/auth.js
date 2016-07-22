@@ -3,6 +3,9 @@ import { replace } from 'react-router-redux';
 import api from '../utils/api';
 import FacebookSDK from '../utils/FacebookSDK';
 import {
+  FB_LOGIN,
+} from '../containers/Auth/actionTypes';
+import {
   fbLoginSuccess,
   fbLoginFail,
   apiLoginSuccess,
@@ -15,7 +18,7 @@ function apiLogin(fbToken) {
 
 function* fbLoginFlow() {
   while (true) { // eslint-disable-line no-constant-condition
-    yield take('FB_LOGIN');
+    yield take(FB_LOGIN);
     const response = yield call(FacebookSDK.login);
     if (!response.authResponse) {
       yield put(fbLoginFail());

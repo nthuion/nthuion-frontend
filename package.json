@@ -10,7 +10,7 @@
     "dev": "node devServer.js",
     "prestart": "NODE_ENV=production npm run build:client",
     "start": "NODE_ENV=production node server.js",
-    "test": "NODE_ENV=test mocha ./src/**/*.test.js",
+    "test": "NODE_ENV=test mocha",
     "posttest": "npm run lint"
   },
   "dependencies": {

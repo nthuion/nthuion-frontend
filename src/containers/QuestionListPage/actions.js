@@ -1,9 +1,14 @@
-import { createAction } from 'redux-actions';
+import {
+  FETCH_QUESTION_LIST,
+  FETCH_QUESTION_LIST_SUCCESS,
+  FETCH_QUESTION_LIST_FAIL,
+} from './actionTypes';
 
-export const fetchQuestions = createAction('FETCH_QUESTIONS');
-export const fetchQuestionsSuccess = (questions) => ({
-  type: 'FETCH_QUESTIONS_SUCCESS',
+
+export const fetchQuestionList = () => ({ type: FETCH_QUESTION_LIST });
+export const fetchQuestionListSuccess = (questions) => ({
+  type: FETCH_QUESTION_LIST_SUCCESS,
   questions,
 });
-export const fetchQuestionsFail = createAction('FETCH_QUESTIONS_SUCCESS');
+export const fetchQuestionListFail = () => ({ type: FETCH_QUESTION_LIST_FAIL });
 

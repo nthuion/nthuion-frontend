@@ -2,24 +2,27 @@ import { takeEvery } from 'redux-saga';
 import { call, fork, put } from 'redux-saga/effects';
 import api from '../utils/api';
 import {
-  fetchQuestionsSuccess,
-  fetchQuestionsFail,
+  FETCH_QUESTION_LIST,
+} from '../containers/QuestionListPage/actionTypes';
+import {
+  fetchQuestionListSuccess,
+  fetchQuestionListFail,
 } from '../containers/QuestionListPage/actions';
 
-function* fetchQuestions() {
+function* fetchQuestionList() {
   try {
     const { data } = yield call(api.get, '/api/questions');
-    yield put(fetchQuestionsSuccess(data));
+    yield put(fetchQuestionListSuccess(data));
   } catch (err) {
-    yield put(fetchQuestionsFail());
+    yield put(fetchQuestionListFail());
   }
 }
 
-function* watchFetchQuestions() {
-  yield* takeEvery('FETCH_QUESTIONS', fetchQuestions);
+function* watchFetchQuestionList() {
+  yield* takeEvery(FETCH_QUESTION_LIST, fetchQuestionList);
 }
 
 export default function* question() {
-  yield fork(watchFetchQuestions);
+  yield fork(watchFetchQuestionList);
 }
 

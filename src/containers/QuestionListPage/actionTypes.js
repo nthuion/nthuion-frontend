@@ -1,0 +1,4 @@
+export const FETCH_QUESTION_LIST = 'question-list/FETCH_QUESTIONS';
+export const FETCH_QUESTION_LIST_SUCCESS = 'question-list/FETCH_QUESTION_LIST_SUCCESS';
+export const FETCH_QUESTION_LIST_FAIL = 'question-list/FETCH_QUESTION_LIST_FAIL';
+

@@ -1,11 +1,14 @@
 import { handleActions } from 'redux-actions';
+import {
+  FETCH_QUESTION_LIST_SUCCESS,
+} from './actionTypes';
 
 const initialState = {
   questions: [],
 };
 
 const reducer = handleActions({
-  FETCH_QUESTIONS_SUCCESS: (state, { questions }) => ({
+  [FETCH_QUESTION_LIST_SUCCESS]: (state, { questions }) => ({
     ...state,
     questions,
   }),
