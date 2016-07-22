@@ -1,11 +1,33 @@
-import { call, take } from 'redux-saga/effects';
+import { call, take, put } from 'redux-saga/effects';
+import api from '../utils/api';
 import FacebookSDK from '../utils/FacebookSDK';
+import {
+  fbLoginSuccess,
+  fbLoginFail,
+  apiLoginSuccess,
+  apiLoginFail,
+} from '../containers/Auth/actions';
+
+function apiLogin(fbToken) {
+  return api.post('/api/login/facebook', { token: fbToken });
+}
 
 function* fbLoginFlow() {
   while (true) { // eslint-disable-line no-constant-condition
     yield take('FB_LOGIN');
     const response = yield call(FacebookSDK.login);
-    console.log(response);
+    if (!response.authResponse) {
+      yield put(fbLoginFail());
+      continue;
+    }
+    const fbToken = response.authResponse.accessToken;
+    yield put(fbLoginSuccess(fbToken));
+    try {
+      const { token } = yield call(apiLogin, fbToken);
+      yield put(apiLoginSuccess(token));
+    } catch (err) {
+      yield put(apiLoginFail());
+    }
   }
 }
 

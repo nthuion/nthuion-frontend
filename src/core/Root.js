@@ -1,14 +1,8 @@
 import React, { PropTypes } from 'react';
 import { Provider } from 'react-redux';
 import { Router } from 'react-router';
-import routes from '../routes';
-import App from '../containers/App';
+import getRoutes from '../routes';
 import DevTools from './DevTools';
-
-const rootRoute = {
-  component: App,
-  childRoutes: routes,
-};
 
 const renderDevTools = () => {
   if (process.env.NODE_ENV === 'production') {
@@ -20,7 +14,7 @@ const renderDevTools = () => {
 const Root = ({ store, history }) => (
   <Provider store={store}>
     <div>
-      <Router history={history} routes={rootRoute} />
+      <Router history={history} routes={getRoutes(store)} />
       {renderDevTools()}
     </div>
   </Provider>
