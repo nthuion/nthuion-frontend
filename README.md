@@ -2,6 +2,10 @@
 
 Frontend of NTHU ION
 
+## Resources
+
+* [Backend Repo](https://github.com/nthuion/nthuion-backend)
+
 ## Prerequisites
 
 * node
