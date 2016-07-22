@@ -1,4 +1,5 @@
 import { call, take, put } from 'redux-saga/effects';
+import { replace } from 'react-router-redux';
 import api from '../utils/api';
 import FacebookSDK from '../utils/FacebookSDK';
 import {
@@ -25,6 +26,7 @@ function* fbLoginFlow() {
     try {
       const { token } = yield call(apiLogin, fbToken);
       yield put(apiLoginSuccess(token));
+      yield put(replace('/'));
     } catch (err) {
       yield put(apiLoginFail());
     }
