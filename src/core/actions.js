@@ -1,7 +1,7 @@
 import { push } from 'react-router-redux';
 
-import * as app from '../containers/App/actions';
-export { app };
+import * as auth from '../containers/Auth/actions';
+export { auth };
 
 export const routing = {
   push(path) {

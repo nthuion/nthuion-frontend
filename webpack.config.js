@@ -21,7 +21,7 @@ const config = {
       loaders: ['babel', 'eslint'],
       include: path.join(__dirname, 'src')
     }, {
-      test: /\.css$/,
+      test: /\.css$|\.scss$/,
       loaders: ['style', 'css?modules&camelCase', 'postcss'],
       include: path.join(__dirname, 'src')
     }]
