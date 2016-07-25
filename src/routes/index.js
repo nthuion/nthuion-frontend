@@ -1,5 +1,5 @@
 import App from '../containers/App';
-import Home from '../containers/App/Home';
+import getQuestionRoutes from './question';
 
 /* eslint-disable global-require */
 export function loadModule(callback) {
@@ -12,27 +12,21 @@ function getRoutes(store) {
   function isLogin() {
     return !!store.getState().auth.apiToken;
   }
+  const questionRoutes = getQuestionRoutes(store, isLogin);
 
   return {
     path: '/',
     component: App,
-    childRoutes: [{
+    indexRoute: {
       onEnter(nextState, replace) {
-        if (!isLogin()) {
-          replace('/login');
-        }
+        replace('/q');
       },
-      indexRoute: {
-        component: Home,
-      },
-      childRoutes: [{
-        path: '/q',
-        getComponent(nextState, callback) {
-          require(['../containers/QuestionListPage'], loadModule(callback));
-        },
-      }],
+    },
+    childRoutes: [{
+      path: 'q',
+      childRoutes: questionRoutes,
     }, {
-      path: '/login',
+      path: 'login',
       onEnter(nextState, replace) {
         if (isLogin()) {
           replace('/');

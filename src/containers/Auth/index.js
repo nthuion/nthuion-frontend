@@ -6,6 +6,10 @@ import Container from '../common/Container';
 import Section from '../common/Section';
 import { blue300, blue500, red500 } from 'material-ui/styles/colors';
 import { fbLogin } from './actions';
+import {
+  FB_LOGIN_FAIL,
+  API_LOGIN_FAIL,
+} from './actionTypes';
 
 class Auth extends Component {
   static propTypes = {
@@ -16,10 +20,10 @@ class Auth extends Component {
     this.props.dispatch(fbLogin());
   };
   renderError = () => {
-    if (this.props.error === 'FB_LOGIN_FAIL') {
+    if (this.props.error === FB_LOGIN_FAIL) {
       return <p style={{ color: red500 }}>FB登入失敗</p>;
     }
-    if (this.props.error === 'API_LOGIN_FAIL') {
+    if (this.props.error === API_LOGIN_FAIL) {
       return <p style={{ color: red500 }}>登入失敗</p>;
     }
     return null;

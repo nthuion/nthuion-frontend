@@ -36,7 +36,7 @@ function* fbLoginFlow() {
   }
 }
 
-export default function* auth() {
+export default function* authSagas() {
   yield call(fbLoginFlow);
 }
 
