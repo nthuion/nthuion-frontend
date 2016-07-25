@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import FlatButton from 'material-ui/FlatButton';
-import './style.scss';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import MdCreate from 'react-icons/lib/md/create';
+import style from './style.scss';
 
 const loginLink = (
   <FlatButton
@@ -30,6 +32,11 @@ const App = ({ children, isLogin }) => (
     <div>
       {renderAppBar(isLogin)}
       {children}
+      <Link to="/q/create">
+        <FloatingActionButton className={style.createButton}>
+          <MdCreate />
+        </FloatingActionButton>
+      </Link>
     </div>
   </MuiThemeProvider>
 );
