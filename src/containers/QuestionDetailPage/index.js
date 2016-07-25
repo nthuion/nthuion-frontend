@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Section from '../common/Section';
 import Container from '../common/Container';
 import QuestionDetail from './QuestionDetail';
+import CommentForm from '../CommentForm';
 import { fetchQuestion } from './actions';
 
 class QuestionDetailPage extends Component {
@@ -16,16 +17,21 @@ class QuestionDetailPage extends Component {
     this.props.dispatch(fetchQuestion(id));
   }
   render() {
-    const { question } = this.props;
+    const { question, params: { id } } = this.props;
     if (!question) {
       return null;
     }
     return (
-      <Section>
+      <div>
         <Container>
-          <QuestionDetail question={question} />
+          <Section>
+            <QuestionDetail question={question} />
+          </Section>
+          <Section>
+            <CommentForm qid={id} />
+          </Section>
         </Container>
-      </Section>
+      </div>
     );
   }
 }
