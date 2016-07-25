@@ -4,7 +4,6 @@ import api from '../utils/api';
 import { push } from 'react-router-redux';
 import { FETCH_QUESTION_LIST } from '../containers/QuestionListPage/actionTypes';
 import { CREATE_QUESTION } from '../containers/CreateQuestionPage/actionTypes';
-import { FETCH_QUESTION } from '../containers/QuestionDetailPage/actionTypes';
 import { VOTE } from '../containers/QuestionInfo/actionTypes';
 import {
   fetchQuestionListSuccess,
@@ -14,10 +13,6 @@ import {
   createQuestionSuccess,
   createQuestionFail,
 } from '../containers/CreateQuestionPage/actions';
-import {
-  fetchQuestionSuccess,
-  fetchQuestionFail,
-} from '../containers/QuestionDetailPage/actions';
 import { voteFail } from '../containers/QuestionInfo/actions';
 
 function* fetchQuestionList() {
@@ -48,19 +43,6 @@ function* watchCreateQuestion(store) {
   yield* takeEvery(CREATE_QUESTION, createQuestion, store);
 }
 
-function* fetchQuestionDetail({ id }) {
-  try {
-    const question = yield call(api.get, `/api/questions/${id}`);
-    yield put(fetchQuestionSuccess(question));
-  } catch (err) {
-    yield put(fetchQuestionFail());
-  }
-}
-
-function* watchFetchQuestionDetail() {
-  yield* takeEvery(FETCH_QUESTION, fetchQuestionDetail);
-}
-
 function* vote(store, { id, value }) {
   try {
     const apiToken = store.getState().auth.apiToken;
@@ -77,7 +59,6 @@ function* watchVote(store) {
 export default function* questionSagas(store) {
   yield fork(watchFetchQuestionList);
   yield fork(watchCreateQuestion, store);
-  yield fork(watchFetchQuestionDetail);
   yield fork(watchVote, store);
 }
 

@@ -4,7 +4,7 @@ import Section from '../common/Section';
 import Container from '../common/Container';
 import QuestionDetail from './QuestionDetail';
 import CommentForm from '../CommentForm';
-import { fetchQuestion } from './actions';
+import { fetchQuestion, fetchComments } from './actions';
 
 class QuestionDetailPage extends Component {
   static propTypes = {
@@ -15,6 +15,7 @@ class QuestionDetailPage extends Component {
   componentDidMount() {
     const { id } = this.props.params;
     this.props.dispatch(fetchQuestion(id));
+    this.props.dispatch(fetchComments(id));
   }
   render() {
     const { question, params: { id } } = this.props;
