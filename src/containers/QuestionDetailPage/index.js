@@ -23,7 +23,7 @@ class QuestionDetailPage extends Component {
     return (
       <Section>
         <Container>
-          <QuestionDetail {...question} />
+          <QuestionDetail question={question} />
         </Container>
       </Section>
     );

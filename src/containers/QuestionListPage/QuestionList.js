@@ -15,7 +15,7 @@ class QuestionList extends Component {
     return questions.map((question, i) => (
       <div key={question.id}>
         {i === 0 ? null : <Divider />}
-        <QuestionListItem {...question} />
+        <QuestionListItem question={question} />
       </div>
     ));
   };
