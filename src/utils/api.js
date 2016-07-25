@@ -21,7 +21,7 @@ function get(path, token) {
     if (res.status >= 400) {
       throw new HttpError(res.status);
     }
-    res.json();
+    return res.json();
   });
 }
 
