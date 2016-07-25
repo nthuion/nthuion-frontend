@@ -4,7 +4,10 @@ import {
   FETCH_QUESTION_FAIL,
 } from './actionTypes';
 
-export const fetchQuestion = () => ({ type: FETCH_QUESTION });
+export const fetchQuestion = (id) => ({
+  type: FETCH_QUESTION,
+  id,
+});
 export const fetchQuestionSuccess = (question) => ({
   type: FETCH_QUESTION_SUCCESS,
   question,

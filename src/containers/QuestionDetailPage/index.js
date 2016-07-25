@@ -1,27 +1,29 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Card, CardTitle, CardText } from 'material-ui/Card';
 import Section from '../common/Section';
 import Container from '../common/Container';
+import QuestionDetail from './QuestionDetail';
 import { fetchQuestion } from './actions';
 
 class QuestionDetailPage extends Component {
   static propTypes = {
-    question: PropTypes.object,
-    dispatch: PropTypes.func,
+    params: PropTypes.object.isRequired,
+    question: PropTypes.object.isRequired,
+    dispatch: PropTypes.func.isRequired,
   };
+  componentDidMount() {
+    const { id } = this.props.params;
+    this.props.dispatch(fetchQuestion(id));
+  }
   render() {
-    if (!this.props.question) {
+    const { question } = this.props;
+    if (!question) {
       return null;
     }
-    const { title, content } = this.props.question;
     return (
       <Section>
         <Container>
-          <Card>
-            <CardTitle title={title} />
-            <CardText>{content}</CardText>
-          </Card>
+          <QuestionDetail {...question} />
         </Container>
       </Section>
     );
