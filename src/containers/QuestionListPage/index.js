@@ -42,7 +42,7 @@ class QuestionListPage extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  questions: state.question.questions,
+  questions: state.questionList.questions,
 });
 
 export default connect(mapStateToProps)(QuestionListPage);

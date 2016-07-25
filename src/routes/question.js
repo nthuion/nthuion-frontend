@@ -17,6 +17,11 @@ function getRoutes(store, isLogin) {
     getComponent(nextState, callback) {
       require(['../containers/CreateQuestionPage'], loadModule(callback));
     },
+  }, {
+    path: ':id',
+    getComponent(nextState, callback) {
+      require(['../containers/QuestionDetailPage'], loadModule(callback));
+    },
   }];
 }
 

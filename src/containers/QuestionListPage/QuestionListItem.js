@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router';
 import { CardTitle, CardText } from 'material-ui/Card';
 import Chip from 'material-ui/Chip';
 import MdArrorUp from 'react-icons/lib/md/keyboard-arrow-up';
@@ -7,6 +8,7 @@ import style from './style.scss';
 
 class QuestionListItem extends Component {
   static propTypes = {
+    id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     comments: PropTypes.number.isRequired,
     votes: PropTypes.number.isRequired,
@@ -21,9 +23,9 @@ class QuestionListItem extends Component {
     ));
   };
   render() {
-    const { title, comments, votes } = this.props;
+    const { id, title, comments, votes } = this.props;
     return (
-      <div className={style.questionListItem}>
+      <Link to={`/q/${id}`} className={style.questionListItem}>
         <div className={style.votes}>
           <MdArrorUp className={style.upVote} />
           <div className={style.count}>{votes}</div>
@@ -37,7 +39,7 @@ class QuestionListItem extends Component {
             </div>
           </CardText>
         </div>
-      </div>
+      </Link>
     );
   }
 }
