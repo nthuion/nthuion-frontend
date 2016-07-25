@@ -1,24 +1,24 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
+import { Card } from 'material-ui/Card';
+import Divider from 'material-ui/Divider';
 import CommentListItem from './CommentListItem';
 
-class CommentList extends Component {
-  static propTypes = {
-    comments: PropTypes.array.isRequired,
-  };
-  renderList = () => {
-    const { comments } = this.props;
-    return comments.map((comment) => (
-      <CommentListItem key={comment.id} comment={comment} />
-    ));
-  };
-  render() {
-    return (
-      <div>
-        {this.renderList()}
-      </div>
-    );
-  }
+function renderList(comments) {
+  return comments.map((comment, i) => (
+    <div key={comment.id}>
+      {i === 0 ? null : <Divider />}
+      <CommentListItem comment={comment} />
+    </div>
+  ));
 }
+
+const CommentList = ({ comments }) => (
+  <Card>{renderList(comments)}</Card>
+);
+
+CommentList.propTypes = {
+  comments: PropTypes.array.isRequired,
+};
 
 export default CommentList;
 

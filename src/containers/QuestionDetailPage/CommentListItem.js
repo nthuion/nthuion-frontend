@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { Card, CardHeader, CardText } from 'material-ui/Card';
+import { CardHeader, CardText } from 'material-ui/Card';
 
 function renderHeader(author) {
   if (author) {
@@ -16,12 +16,12 @@ function renderHeader(author) {
 const CommentListItem = ({ comment }) => {
   const { author, content } = comment;
   return (
-    <Card>
+    <div>
       {renderHeader(author)}
       <CardText>
         {content}
       </CardText>
-    </Card>
+    </div>
   );
 };
 

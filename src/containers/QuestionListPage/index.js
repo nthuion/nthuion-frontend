@@ -12,11 +12,8 @@ class QuestionListPage extends Component {
     dispatch: PropTypes.func.isRequired,
   };
   componentDidMount() {
-    this.fetchQuestions();
-  }
-  fetchQuestions = () => {
     this.props.dispatch(fetchQuestionList());
-  };
+  }
   render() {
     const { questions } = this.props;
     return (
