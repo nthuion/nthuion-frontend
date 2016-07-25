@@ -1,15 +1,18 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import Subheader from 'material-ui/Subheader';
 import Section from '../common/Section';
 import Container from '../common/Container';
 import QuestionDetail from './QuestionDetail';
 import CommentForm from '../CommentForm';
+import CommentList from './CommentList';
 import { fetchQuestion, fetchComments } from './actions';
 
 class QuestionDetailPage extends Component {
   static propTypes = {
     params: PropTypes.object.isRequired,
     question: PropTypes.object.isRequired,
+    comments: PropTypes.array.isRequired,
     dispatch: PropTypes.func.isRequired,
   };
   componentDidMount() {
@@ -18,7 +21,7 @@ class QuestionDetailPage extends Component {
     this.props.dispatch(fetchComments(id));
   }
   render() {
-    const { question, params: { id } } = this.props;
+    const { question, comments, params: { id } } = this.props;
     if (!question) {
       return null;
     }
@@ -29,6 +32,10 @@ class QuestionDetailPage extends Component {
             <QuestionDetail question={question} />
           </Section>
           <Section>
+            <Subheader>所有回應</Subheader>
+            <CommentList comments={comments} />
+          </Section>
+          <Section>
             <CommentForm qid={id} />
           </Section>
         </Container>
@@ -37,9 +44,7 @@ class QuestionDetailPage extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  question: state.questionDetail.question,
-});
+const mapStateToProps = (state) => state.questionDetail;
 
 export default connect(mapStateToProps)(QuestionDetailPage);
 

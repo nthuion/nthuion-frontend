@@ -12,5 +12,8 @@ export const downVote = (id) => ({
   value: -1,
 });
 
-export const voteFail = () => ({ type: VOTE_FAIL });
+export const voteFail = (error) => ({
+  type: VOTE_FAIL,
+  error,
+});
 

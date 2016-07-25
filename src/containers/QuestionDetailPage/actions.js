@@ -15,7 +15,10 @@ export const fetchQuestionSuccess = (question) => ({
   type: FETCH_QUESTION_SUCCESS,
   question,
 });
-export const fetchQuestionFail = () => ({ type: FETCH_QUESTION_FAIL });
+export const fetchQuestionFail = (error) => ({
+  type: FETCH_QUESTION_FAIL,
+  error,
+});
 
 export const fetchComments = (qid) => ({
   type: FETCH_COMMENTS,
@@ -27,5 +30,8 @@ export const fetchCommentsSuccess = (comments) => ({
   comments,
 });
 
-export const fetchCommentsFail = () => ({ type: FETCH_COMMENTS_FAIL });
+export const fetchCommentsFail = (error) => ({
+  type: FETCH_COMMENTS_FAIL,
+  error,
+});
 

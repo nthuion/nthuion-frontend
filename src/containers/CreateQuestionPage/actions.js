@@ -9,5 +9,8 @@ export const createQuestion = (question) => ({
   question,
 });
 export const createQuestionSuccess = () => ({ type: CREATE_QUESTION_SUCCESS });
-export const createQuestionFail = () => ({ type: CREATE_QUESTION_FAIL });
+export const createQuestionFail = (error) => ({
+  type: CREATE_QUESTION_FAIL,
+  error,
+});
 

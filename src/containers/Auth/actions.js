@@ -11,11 +11,17 @@ export const fbLoginSuccess = (fbToken) => ({
   type: FB_LOGIN_SUCCESS,
   fbToken,
 });
-export const fbLoginFail = () => ({ type: FB_LOGIN_FAIL });
+export const fbLoginFail = (error) => ({
+  type: FB_LOGIN_FAIL,
+  error,
+});
 
 export const apiLoginSuccess = (apiToken) => ({
   type: API_LOGIN_SUCCESS,
   apiToken,
 });
-export const apiLoginFail = () => ({ type: API_LOGIN_FAIL });
+export const apiLoginFail = (error) => ({
+  type: API_LOGIN_FAIL,
+  error,
+});
 
