@@ -9,40 +9,36 @@ class HttpError extends Error {
   }
 }
 
-function get(path, token) {
-  const options = {};
+function request(method, path, token, data) {
+  const options = { method };
   if (token) {
     options.headers = {
       Authorization: `Token ${token}`,
     };
   }
-  return fetch(`${BASE_URL}${path}`, options)
-  .then((res) => {
-    if (res.status >= 400) {
-      throw new HttpError(res.status);
-    }
-    return res.json();
-  });
-}
-
-function post(path, data, token) {
-  const options = {
-    method: 'POST',
-    body: JSON.stringify(data),
-  };
-  if (token) {
-    options.headers = {
-      Authorization: `Token ${token}`,
-    };
+  if (data) {
+    options.body = JSON.stringify(data);
   }
   return fetch(`${BASE_URL}${path}`, options)
   .then((res) => {
     if (res.status >= 400) {
-      throw new HttpError(res.status);
+      throw new HttpError(res.statue);
     }
     return res.json();
   });
 }
 
-export default { get, post };
+const api = {
+  get(path, token) {
+    return request('GET', path, token);
+  },
+  post(path, token, data) {
+    return request('POST', path, token, data);
+  },
+  put(path, token, data) {
+    return request('PUT', path, token, data);
+  },
+};
+
+export default api;
 

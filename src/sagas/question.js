@@ -2,27 +2,23 @@ import { takeEvery } from 'redux-saga';
 import { call, fork, put } from 'redux-saga/effects';
 import api from '../utils/api';
 import { push } from 'react-router-redux';
-import {
-  FETCH_QUESTION_LIST,
-} from '../containers/QuestionListPage/actionTypes';
+import { FETCH_QUESTION_LIST } from '../containers/QuestionListPage/actionTypes';
+import { CREATE_QUESTION } from '../containers/CreateQuestionPage/actionTypes';
+import { FETCH_QUESTION } from '../containers/QuestionDetailPage/actionTypes';
+import { VOTE } from '../containers/QuestionInfo/actionTypes';
 import {
   fetchQuestionListSuccess,
   fetchQuestionListFail,
 } from '../containers/QuestionListPage/actions';
 import {
-  CREATE_QUESTION,
-} from '../containers/CreateQuestionPage/actionTypes';
-import {
   createQuestionSuccess,
   createQuestionFail,
 } from '../containers/CreateQuestionPage/actions';
 import {
-  FETCH_QUESTION,
-} from '../containers/QuestionDetailPage/actionTypes';
-import {
   fetchQuestionSuccess,
   fetchQuestionFail,
 } from '../containers/QuestionDetailPage/actions';
+import { voteFail } from '../containers/QuestionInfo/actions';
 
 function* fetchQuestionList() {
   try {
@@ -40,7 +36,7 @@ function* watchFetchQuestionList() {
 function* createQuestion(store, { question }) {
   try {
     const apiToken = store.getState().auth.apiToken;
-    yield call(api.post, '/api/questions', question, apiToken);
+    yield call(api.post, '/api/questions', apiToken, question);
     yield put(createQuestionSuccess());
     yield put(push('/q'));
   } catch (err) {
@@ -65,9 +61,23 @@ function* watchFetchQuestionDetail() {
   yield* takeEvery(FETCH_QUESTION, fetchQuestionDetail);
 }
 
+function* vote(store, { id, value }) {
+  try {
+    const apiToken = store.getState().auth.apiToken;
+    yield call(api.put, `/api/questions/${id}/vote`, apiToken, { value });
+  } catch (err) {
+    yield put(voteFail());
+  }
+}
+
+function* watchVote(store) {
+  yield* takeEvery(VOTE, vote, store);
+}
+
 export default function* questionSagas(store) {
   yield fork(watchFetchQuestionList);
   yield fork(watchCreateQuestion, store);
   yield fork(watchFetchQuestionDetail);
+  yield fork(watchVote, store);
 }
 

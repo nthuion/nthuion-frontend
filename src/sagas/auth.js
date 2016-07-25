@@ -13,7 +13,7 @@ import {
 } from '../containers/Auth/actions';
 
 function apiLogin(fbToken) {
-  return api.post('/api/login/facebook', { token: fbToken });
+  return api.post('/api/login/facebook', null, { token: fbToken });
 }
 
 function* fbLoginFlow() {

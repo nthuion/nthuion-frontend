@@ -1,7 +1,8 @@
 .question-info {
   display: flex;
-  text-decoration: none;
-
+  a {
+    text-decoration: none;
+  }
   .votes {
     width: 64px;
     display: flex;
