@@ -17,7 +17,7 @@ import { voteFail } from '../containers/QuestionInfo/actions';
 
 function* fetchQuestionList() {
   try {
-    const { data } = yield call(api.get, '/api/questions');
+    const { data } = yield call(api.get, '/api/issues');
     yield put(fetchQuestionListSuccess(data));
   } catch (error) {
     yield put(fetchQuestionListFail(error));
@@ -31,7 +31,7 @@ function* watchFetchQuestionList() {
 function* createQuestion(store, { question }) {
   try {
     const apiToken = store.getState().auth.apiToken;
-    yield call(api.post, '/api/questions', apiToken, question);
+    yield call(api.post, '/api/issues', apiToken, question);
     yield put(createQuestionSuccess());
     yield put(push('/q'));
   } catch (error) {
@@ -46,7 +46,7 @@ function* watchCreateQuestion(store) {
 function* vote(store, { id, value }) {
   try {
     const apiToken = store.getState().auth.apiToken;
-    yield call(api.put, `/api/questions/${id}/vote`, apiToken, { value });
+    yield call(api.put, `/api/issues/${id}/vote`, apiToken, { value });
   } catch (error) {
     yield put(voteFail(error));
   }

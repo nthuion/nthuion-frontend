@@ -14,7 +14,7 @@ import {
 
 function* fetchQuestion({ id }) {
   try {
-    const question = yield call(api.get, `/api/questions/${id}`);
+    const question = yield call(api.get, `/api/issues/${id}`);
     yield put(fetchQuestionSuccess(question));
   } catch (error) {
     yield put(fetchQuestionFail(error));
@@ -27,7 +27,7 @@ function* watchFetchQuestion() {
 
 function* fetchComments({ qid }) {
   try {
-    const { data } = yield call(api.get, `/api/questions/${qid}/comments`);
+    const { data } = yield call(api.get, `/api/issues/${qid}/comments`);
     yield put(fetchCommentsSuccess(data));
   } catch (error) {
     yield put(fetchCommentsFail(error));

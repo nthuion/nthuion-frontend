@@ -1,16 +1,23 @@
 import { takeEvery } from 'redux-saga';
-import { call, fork } from 'redux-saga/effects';
+import { call, fork, put } from 'redux-saga/effects';
 import api from '../utils/api';
 import {
   SEND_COMMENT,
 } from '../containers/CommentForm/actionTypes';
+import {
+  sendCommentFail,
+} from '../containers/CommentForm/actions';
+import {
+  fetchComments,
+} from '../containers/QuestionDetailPage/actions';
 
 function* sendComment(store, { qid, content }) {
   try {
     const apiToken = store.getState().auth.apiToken;
-    yield call(api.post, `/api/questions/${qid}/comments`, apiToken, { content });
-  } catch (err) {
-    //
+    yield call(api.post, `/api/issues/${qid}/comments`, apiToken, { content });
+    yield put(fetchComments(qid));
+  } catch (error) {
+    yield put(sendCommentFail(error));
   }
 }
 
