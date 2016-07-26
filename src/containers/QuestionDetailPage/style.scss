@@ -1,0 +1,13 @@
+@import '../common/styles/transition.scss';
+
+.enter {
+  opacity: 0;
+  transform: translateY(20%);
+}
+
+.enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 150ms $standard-curve 150ms, transform 375ms $deceleration-curve;
+}
+

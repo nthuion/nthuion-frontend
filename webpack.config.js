@@ -22,7 +22,7 @@ const config = {
       include: path.join(__dirname, 'src')
     }, {
       test: /\.css$|\.scss$/,
-      loaders: ['style', 'css?modules&camelCase', 'postcss'],
+      loaders: ['style', 'css?modules&camelCase&localIdentName=[local]_[hash:base64:5]', 'postcss'],
       include: path.join(__dirname, 'src')
     }]
   },

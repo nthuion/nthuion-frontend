@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import style from './style.scss';
+import style from './styles/base.scss';
 
 const Section = ({ children }) => (
   <div className={style.section}>{children}</div>

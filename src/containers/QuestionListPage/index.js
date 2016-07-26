@@ -8,7 +8,7 @@ import Subheader from 'material-ui/Subheader';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import MdCreate from 'react-icons/lib/md/create';
 import { fetchQuestionList } from './actions';
-import style from '../common/style.scss';
+import style from '../common/styles/base.scss';
 
 class QuestionListPage extends Component {
   static propTypes = {

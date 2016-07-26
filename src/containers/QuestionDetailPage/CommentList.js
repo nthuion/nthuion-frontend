@@ -1,19 +1,24 @@
 import React, { PropTypes } from 'react';
-import { Card } from 'material-ui/Card';
-import Divider from 'material-ui/Divider';
+import Transition from 'react-addons-css-transition-group';
 import CommentListItem from './CommentListItem';
+import style from './style.scss';
 
 function renderList(comments) {
-  return comments.map((comment, i) => (
+  return comments.map((comment) => (
     <div key={comment.id}>
-      {i === 0 ? null : <Divider />}
       <CommentListItem comment={comment} />
     </div>
   ));
 }
 
 const CommentList = ({ comments }) => (
-  <Card>{renderList(comments)}</Card>
+  <Transition
+    className={style.commentList}
+    transitionName={style}
+    transitionEnterTimeout={500}
+  >
+    {renderList(comments)}
+  </Transition>
 );
 
 CommentList.propTypes = {
