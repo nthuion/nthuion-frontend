@@ -42,10 +42,10 @@ class QuestionInfo extends Component {
   };
   renderInfo = () => {
     const { isLink } = this.props;
-    const { id, title, comments } = this.props.question;
+    const { id, title, ncomments } = this.props.question;
     const info = (
       <div>
-        <CardTitle title={title} subtitle={`${comments}則回應`} />
+        <CardTitle title={title} subtitle={`${ncomments}則回應`} />
         <CardText>
           <div className={style.tagList}>
             {this.renderTags()}
