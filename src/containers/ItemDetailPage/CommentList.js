@@ -16,6 +16,7 @@ const CommentList = ({ comments }) => (
     className={style.commentList}
     transitionName={style}
     transitionEnterTimeout={500}
+    transitionLeave={false}
   >
     {renderList(comments)}
   </Transition>
