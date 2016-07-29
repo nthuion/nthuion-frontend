@@ -8,22 +8,25 @@ import MdArrorDown from 'react-icons/lib/md/keyboard-arrow-down';
 import { upVote, downVote } from './actions';
 import style from './style.scss';
 
-class QuestionInfo extends Component {
+class ItemInfo extends Component {
   static propTypes = {
+    type: PropTypes.oneOf(['issue', 'solution']).isRequired,
     isLink: PropTypes.bool,
-    question: PropTypes.object.isRequired,
+    item: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
   };
   handleUpVote = () => {
-    const { id } = this.props.question;
-    this.props.dispatch(upVote(id));
+    const { type } = this.props;
+    const { id } = this.props.item;
+    this.props.dispatch(upVote(type, id));
   };
   handleDownVote = () => {
-    const { id } = this.props.question;
-    this.props.dispatch(downVote(id));
+    const { type } = this.props;
+    const { id } = this.props.item;
+    this.props.dispatch(downVote(type, id));
   };
   renderVotes = () => {
-    const { votes } = this.props.question;
+    const { votes } = this.props.item;
     return (
       <div className={style.votes}>
         <MdArrorUp className={style.upVote} onClick={this.handleUpVote} />
@@ -33,7 +36,7 @@ class QuestionInfo extends Component {
     );
   };
   renderTags = () => {
-    const { tags } = this.props.question;
+    const { tags } = this.props.item;
     return tags.map((tag) => (
       <div className={style.tag}>
         <Chip>{tag}</Chip>
@@ -41,8 +44,8 @@ class QuestionInfo extends Component {
     ));
   };
   renderInfo = () => {
-    const { isLink } = this.props;
-    const { id, title, ncomments } = this.props.question;
+    const { isLink, type } = this.props;
+    const { id, title, ncomments } = this.props.item;
     const info = (
       <div>
         <CardTitle title={title} subtitle={`${ncomments}則回應`} />
@@ -54,13 +57,13 @@ class QuestionInfo extends Component {
       </div>
     );
     if (isLink) {
-      return <Link to={`/q/${id}`}>{info}</Link>;
+      return <Link to={`/${type[0]}/${id}`}>{info}</Link>;
     }
     return info;
   };
   render() {
     return (
-      <div className={style.questionInfo}>
+      <div className={style.itemInfo}>
         {this.renderVotes()}
         {this.renderInfo()}
       </div>
@@ -68,5 +71,5 @@ class QuestionInfo extends Component {
   }
 }
 
-export default connect()(QuestionInfo);
+export default connect()(ItemInfo);
 

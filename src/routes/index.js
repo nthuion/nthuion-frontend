@@ -1,5 +1,5 @@
 import App from '../containers/App';
-import getQuestionRoutes from './question';
+import getIssueRoutes from './issue';
 
 /* eslint-disable global-require */
 export function loadModule(callback) {
@@ -12,19 +12,19 @@ function getRoutes(store) {
   function isLogin() {
     return !!store.getState().auth.apiToken;
   }
-  const questionRoutes = getQuestionRoutes(store, isLogin);
+  const issueRoutes = getIssueRoutes(store, isLogin);
 
   return {
     path: '/',
     component: App,
     indexRoute: {
       onEnter(nextState, replace) {
-        replace('/q');
+        replace('/i');
       },
     },
     childRoutes: [{
-      path: 'q',
-      childRoutes: questionRoutes,
+      path: 'i',
+      childRoutes: issueRoutes,
     }, {
       path: 'login',
       onEnter(nextState, replace) {

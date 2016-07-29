@@ -7,6 +7,7 @@ import { sendComment } from './actions';
 
 class CommentForm extends Component {
   static propTypes = {
+    type: PropTypes.oneOf(['issue', 'solution']).isRequired,
     qid: PropTypes.number.isRequired,
     dispatch: PropTypes.func.isRequired,
   };
@@ -20,9 +21,9 @@ class CommentForm extends Component {
     this.setState({ content: e.target.value });
   };
   handleSubmit = () => {
-    const { qid } = this.props;
+    const { type, qid } = this.props;
     const { content } = this.state;
-    this.props.dispatch(sendComment(qid, content));
+    this.props.dispatch(sendComment(type, qid, content));
     this.setState({ content: '' });
   };
   render() {

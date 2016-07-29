@@ -6,10 +6,11 @@ import Checkbox from 'material-ui/Checkbox';
 import FlatButton from 'material-ui/FlatButton';
 import Section from '../common/Section';
 import Container from '../common/Container';
-import { createQuestion } from './actions';
+import { createItem } from './actions';
 
-class CreateQuestionPage extends Component {
+class CreateItemPage extends Component {
   static propTypes = {
+    type: PropTypes.oneOf(['issue', 'solution']).isRequired,
     dispatch: PropTypes.func,
   };
   constructor(props) {
@@ -34,18 +35,21 @@ class CreateQuestionPage extends Component {
     this.setState({ content: e.target.value });
   };
   handleSubmit = () => {
-    const question = {
+    const item = {
       ...this.state,
-      tags: this.state.tags.split(','),
+      tags: this.state.tags.split(',').map((tag) => tag.trim()),
     };
-    this.props.dispatch(createQuestion(question));
+    const { type } = this.props;
+    this.props.dispatch(createItem(type, item));
   };
   render() {
+    const { type } = this.props;
+    const title = type === 'issue' ? '新增問題' : '提出解法';
     return (
       <Section>
         <Container>
           <Card>
-            <CardTitle title="新增問題" />
+            <CardTitle title={title} />
             <CardText>
               <TextField
                 floatingLabelText="標題"
@@ -77,5 +81,5 @@ class CreateQuestionPage extends Component {
   }
 }
 
-export default connect()(CreateQuestionPage);
+export default connect()(CreateItemPage);
 

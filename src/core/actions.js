@@ -1,17 +1,16 @@
 import { push } from 'react-router-redux';
 
 import * as auth from '../containers/Auth/actions';
-import * as questionInfo from '../containers/QuestionInfo/actions';
-import * as questionList from '../containers/QuestionListPage/actions';
-import * as questionDetail from '../containers/QuestionDetailPage/actions';
-import * as createQuestion from '../containers/CreateQuestionPage/actions';
+import * as itemInfo from '../containers/ItemInfo/actions';
+import * as itemList from '../containers/ItemListPage/actions';
+// import * as itemDetail from '../containers/ItemDetailPage/actions';
+import * as createItem from '../containers/CreateItemPage/actions';
 import * as commentForm from '../containers/CommentForm/actions';
 export {
   auth,
-  questionInfo,
-  questionList,
-  questionDetail,
-  createQuestion,
+  itemInfo,
+  itemList,
+  createItem,
   commentForm,
 };
 

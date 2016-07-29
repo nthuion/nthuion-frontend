@@ -9,15 +9,15 @@ import {
 } from '../containers/CommentForm/actions';
 import {
   fetchComments,
-} from '../containers/QuestionDetailPage/actions';
+} from '../containers/ItemDetailPage/actions';
 
-function* sendComment(store, { qid, content }) {
+function* sendComment(store, { itemType, qid, content }) {
   try {
     const apiToken = store.getState().auth.apiToken;
-    yield call(api.post, `/api/issues/${qid}/comments`, apiToken, { content });
-    yield put(fetchComments(qid));
+    yield call(api.post, `/api/${itemType}s/${qid}/comments`, apiToken, { content });
+    yield put(fetchComments(itemType, qid));
   } catch (error) {
-    yield put(sendCommentFail(error));
+    yield put(sendCommentFail(itemType, error));
   }
 }
 

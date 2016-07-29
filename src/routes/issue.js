@@ -1,11 +1,11 @@
 import { loadModule } from './index';
-import QuestionListPage from '../containers/QuestionListPage';
+import IssueListPage from '../containers/Issue/List';
 
 /* eslint-disable global-require */
 function getRoutes(store, isLogin) {
   return [{
     indexRoute: {
-      component: QuestionListPage,
+      component: IssueListPage,
     },
   }, {
     path: 'create',
@@ -15,12 +15,12 @@ function getRoutes(store, isLogin) {
       }
     },
     getComponent(nextState, callback) {
-      require(['../containers/CreateQuestionPage'], loadModule(callback));
+      require(['../containers/Issue/Create'], loadModule(callback));
     },
   }, {
     path: ':id',
     getComponent(nextState, callback) {
-      require(['../containers/QuestionDetailPage'], loadModule(callback));
+      require(['../containers/Issue/Detail'], loadModule(callback));
     },
   }];
 }

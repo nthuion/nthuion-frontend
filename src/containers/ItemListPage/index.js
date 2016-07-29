@@ -1,34 +1,37 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import QuestionList from './QuestionList';
+import ItemList from './ItemList';
 import Section from '../common/Section';
 import Container from '../common/Container';
 import Subheader from 'material-ui/Subheader';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import MdCreate from 'react-icons/lib/md/create';
-import { fetchQuestionList } from './actions';
+import { fetchItemList } from './actions';
 import style from '../common/styles/base.scss';
 
-class QuestionListPage extends Component {
+class ItemListPage extends Component {
   static propTypes = {
-    questions: PropTypes.array.isRequired,
+    type: PropTypes.oneOf(['issue', 'solution']).isRequired,
+    items: PropTypes.array.isRequired,
     dispatch: PropTypes.func.isRequired,
   };
   componentDidMount() {
-    this.props.dispatch(fetchQuestionList());
+    const { type } = this.props;
+    this.props.dispatch(fetchItemList(type));
   }
   render() {
-    const { questions } = this.props;
+    const { type, items } = this.props;
+    const title = type === 'issue' ? '所有問題' : '所有解法';
     return (
       <div>
         <Section>
           <Container>
-            <Subheader>所有問題</Subheader>
-            <QuestionList questions={questions} />
+            <Subheader>{title}</Subheader>
+            <ItemList type={type} items={items[type]} />
           </Container>
         </Section>
-        <Link to="/q/create">
+        <Link to="/i/create">
           <FloatingActionButton className={style.fixedActionButton}>
             <MdCreate />
           </FloatingActionButton>
@@ -39,8 +42,8 @@ class QuestionListPage extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  questions: state.questionList.questions,
+  items: state.itemList.items,
 });
 
-export default connect(mapStateToProps)(QuestionListPage);
+export default connect(mapStateToProps)(ItemListPage);
 
