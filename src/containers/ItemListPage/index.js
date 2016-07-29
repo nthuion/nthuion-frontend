@@ -31,7 +31,7 @@ class ItemListPage extends Component {
             <ItemList type={type} items={items[type]} />
           </Container>
         </Section>
-        <Link to="/i/create">
+        <Link to={`/${type[0]}/create`}>
           <FloatingActionButton className={style.fixedActionButton}>
             <MdCreate />
           </FloatingActionButton>

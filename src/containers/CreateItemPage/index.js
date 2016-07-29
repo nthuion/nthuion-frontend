@@ -40,6 +40,9 @@ class CreateItemPage extends Component {
       tags: this.state.tags.split(',').map((tag) => tag.trim()),
     };
     const { type } = this.props;
+    if (type === 'solution') {
+      item.is_anonymous = undefined;
+    }
     this.props.dispatch(createItem(type, item));
   };
   render() {
