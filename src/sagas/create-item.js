@@ -13,7 +13,7 @@ function* createItem(store, { itemType, item }) {
     const apiToken = store.getState().auth.apiToken;
     yield call(api.post, `/api/${itemType}s`, apiToken, item);
     yield put(createItemSuccess(itemType));
-    yield put(push(itemType[0]));
+    yield put(push(`/${itemType[0]}`));
   } catch (error) {
     yield put(createItemFail(itemType, error));
   }
