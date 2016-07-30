@@ -23,6 +23,9 @@ class CommentForm extends Component {
   handleSubmit = () => {
     const { type, qid } = this.props;
     const { content } = this.state;
+    if (content.trim() === '') {
+      return;
+    }
     this.props.dispatch(sendComment(type, qid, content));
     this.setState({ content: '' });
   };
