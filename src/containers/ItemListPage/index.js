@@ -22,7 +22,7 @@ class ItemListPage extends Component {
   }
   render() {
     const { type, items } = this.props;
-    const title = type === 'issue' ? '所有問題' : '所有解法';
+    const title = type === 'issue' ? '所有問題' : '所有提案';
     return (
       <div>
         <Section>

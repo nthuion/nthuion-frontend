@@ -47,7 +47,7 @@ class CreateItemPage extends Component {
   };
   render() {
     const { type } = this.props;
-    const title = type === 'issue' ? '新增問題' : '提出解法';
+    const title = type === 'issue' ? '新增問題' : '新增提案';
     return (
       <Section>
         <Container>
