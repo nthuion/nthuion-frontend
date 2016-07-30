@@ -1,24 +1,19 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import { push } from 'react-router-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import AppBar from 'material-ui/AppBar';
-import Drawer from 'material-ui/Drawer';
-import MenuItem from 'material-ui/MenuItem';
+import AppBar from './AppBar';
+import Drawer from './Drawer';
 import FlatButton from 'material-ui/FlatButton';
 import './style.scss';
-
-const loginLink = (
-  <FlatButton
-    label="Login"
-    containerElement={<Link to="/login" />}
-  />
-);
 
 class App extends Component {
   static propTypes = {
     children: PropTypes.node,
     isLogin: PropTypes.bool,
+    location: PropTypes.object,
+    dispatch: PropTypes.func,
   };
   constructor(props) {
     super(props);
@@ -26,6 +21,9 @@ class App extends Component {
       open: false,
     };
   }
+  push = (path) => {
+    this.props.dispatch(push(path));
+  };
   handleOpen = () => {
     this.setState({ open: true });
   };
@@ -35,38 +33,45 @@ class App extends Component {
   handleChange = (open) => {
     this.setState({ open });
   };
-  renderAppBar = () => {
+  handleIssueLink = () => {
+    this.props.dispatch(push('/i'));
+    this.handleClose();
+  };
+  handleSolutionLink = () => {
+    this.props.dispatch(push('/s'));
+    this.handleClose();
+  };
+  renderLoginButton = () => {
     if (this.props.isLogin) {
-      return <AppBar title="NTHU ION" />;
+      return null;
     }
     return (
-      <AppBar
-        title="NTHU ION"
-        iconElementRight={loginLink}
-        onLeftIconButtonTouchTap={this.handleOpen}
+      <FlatButton
+        label="Login"
+        containerElement={<Link to="/login" />}
       />
     );
   };
+  renderAppBar = () => (
+    <AppBar
+      title="NTHU ION"
+      iconElementRight={this.renderLoginButton()}
+      onLeftIconButtonTouchTap={this.handleOpen}
+    />
+  );
   render() {
-    const { children } = this.props;
+    const { children, isLogin } = this.props;
     return (
       <MuiThemeProvider>
         <div>
-          {this.renderAppBar()}
+          <AppBar isLogin={isLogin} handleOpen={this.handleOpen} />
           {children}
           <Drawer
-            docked={false}
-            width={200}
             open={this.state.open}
-            onRequestionChange={this.handleChange}
-          >
-            <MenuItem onTouchTap={this.handleClose}>
-              <Link to="/i">Issues</Link>
-            </MenuItem>
-            <MenuItem onTouchTap={this.handleClose}>
-              <Link to="/s">Solutions</Link>
-            </MenuItem>
-          </Drawer>
+            handleChange={this.handleChange}
+            handleIssueLink={this.handleIssueLink}
+            handleSolutionLink={this.handleSolutionLink}
+          />
         </div>
       </MuiThemeProvider>
     );
