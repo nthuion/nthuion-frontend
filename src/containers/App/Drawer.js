@@ -2,8 +2,22 @@ import React, { PropTypes } from 'react';
 import MuiDrawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 
+function getMenuItemStyle(location, path) {
+  if (location.pathname === path) {
+    return {
+      cursor: 'pointer',
+      fontWeight: 700,
+      backgroundColor: 'rgba(0, 0, 0, 0.09)',
+    };
+  }
+  return {
+    cursor: 'pointer',
+  };
+}
+
 const Drawer = ({
   open,
+  location,
   handleChange,
   handleIssueLink,
   handleSolutionLink,
@@ -14,10 +28,16 @@ const Drawer = ({
     open={open}
     onRequestChange={handleChange}
   >
-    <MenuItem onTouchTap={handleIssueLink}>
+    <MenuItem
+      style={getMenuItemStyle(location, '/i')}
+      onTouchTap={handleIssueLink}
+    >
       Issues
     </MenuItem>
-    <MenuItem onTouchTap={handleSolutionLink}>
+    <MenuItem
+      style={getMenuItemStyle(location, '/s')}
+      onTouchTap={handleSolutionLink}
+    >
       Solutions
     </MenuItem>
   </MuiDrawer>
@@ -25,6 +45,7 @@ const Drawer = ({
 
 Drawer.propTypes = {
   open: PropTypes.bool,
+  location: PropTypes.object,
   handleChange: PropTypes.func,
   handleIssueLink: PropTypes.func,
   handleSolutionLink: PropTypes.func,

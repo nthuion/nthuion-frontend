@@ -60,7 +60,7 @@ class App extends Component {
     />
   );
   render() {
-    const { children, isLogin } = this.props;
+    const { children, isLogin, location } = this.props;
     return (
       <MuiThemeProvider>
         <div>
@@ -68,6 +68,7 @@ class App extends Component {
           {children}
           <Drawer
             open={this.state.open}
+            location={location}
             handleChange={this.handleChange}
             handleIssueLink={this.handleIssueLink}
             handleSolutionLink={this.handleSolutionLink}
