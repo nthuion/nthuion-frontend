@@ -38,7 +38,7 @@ class CommentForm extends Component {
             name="comment"
             value={this.state.content}
             multiLine
-            rows={1}
+            rows={2}
             onChange={this.handleChange}
           />
         </CardText>

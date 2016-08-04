@@ -23,7 +23,7 @@ class AppBar extends Component {
     const { handleOpen } = this.props;
     return (
       <MuiAppBar
-        title="NTHU ION"
+        title="清離子黑客松"
         iconElementRight={this.renderLoginButton()}
         onLeftIconButtonTouchTap={handleOpen}
       />

@@ -54,7 +54,7 @@ class App extends Component {
   };
   renderAppBar = () => (
     <AppBar
-      title="NTHU ION"
+      title="清離子黑客松"
       iconElementRight={this.renderLoginButton()}
       onLeftIconButtonTouchTap={this.handleOpen}
     />

@@ -59,7 +59,7 @@ class CreateItemPage extends Component {
                 onChange={this.handleTitleChange}
               /><br />
               <TextField
-                floatingLabelText="Tags"
+                floatingLabelText="分類標籤"
                 onChange={this.handleTagsChange}
               /><br />
               <Checkbox
@@ -70,7 +70,7 @@ class CreateItemPage extends Component {
               <TextField
                 floatingLabelText="內容"
                 multiLine
-                rows={3}
+                rows={7}
                 onChange={this.handleContentChange}
               />
             </CardText>

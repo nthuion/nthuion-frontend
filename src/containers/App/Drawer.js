@@ -32,13 +32,13 @@ const Drawer = ({
       style={getMenuItemStyle(location, '/i')}
       onTouchTap={handleIssueLink}
     >
-      Issues
+      所有提問
     </MenuItem>
     <MenuItem
       style={getMenuItemStyle(location, '/s')}
       onTouchTap={handleSolutionLink}
     >
-      Solutions
+      所有提案
     </MenuItem>
   </MuiDrawer>
 );
