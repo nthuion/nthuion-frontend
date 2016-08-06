@@ -14,7 +14,7 @@ import style from '../common/styles/base.scss';
 class ItemListPage extends Component {
   static propTypes = {
     type: PropTypes.oneOf(['issue', 'solution']).isRequired,
-    items: PropTypes.array.isRequired,
+    itemCollection: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
   };
   componentDidMount() {
@@ -22,16 +22,20 @@ class ItemListPage extends Component {
     this.props.dispatch(fetchItemList(type));
   }
   render() {
-    const { type, items } = this.props;
+    const { type, itemCollection } = this.props;
+    const { allItems, itemsById } = itemCollection;
     const documentTitle = type === 'issue' ? '問題列表' : '提案列表';
     const title = type === 'issue' ? '所有問題' : '所有提案';
+    const items = allItems[type].map((item) => (
+      itemsById[type][item]
+    ));
     return (
       <DocumentTitle title={documentTitle}>
         <div>
           <Section>
             <Container>
               <Subheader>{title}</Subheader>
-              <ItemList type={type} items={items[type]} />
+              <ItemList type={type} items={items} />
             </Container>
           </Section>
           <Link to={`/${type[0]}/create`}>
@@ -46,7 +50,7 @@ class ItemListPage extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  items: state.itemList.items,
+  itemCollection: state.itemCollection,
 });
 
 export default connect(mapStateToProps)(ItemListPage);

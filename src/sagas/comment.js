@@ -8,14 +8,14 @@ import {
   sendCommentFail,
 } from '../containers/CommentForm/actions';
 import {
-  fetchComments,
+  fetchItem,
 } from '../containers/ItemDetailPage/actions';
 
 function* sendComment(store, { itemType, qid, content }) {
   try {
     const apiToken = store.getState().auth.apiToken;
     yield call(api.post, `/api/${itemType}s/${qid}/comments`, apiToken, { content });
-    yield put(fetchComments(itemType, qid));
+    yield put(fetchItem(itemType, qid));
   } catch (error) {
     yield put(sendCommentFail(itemType, error));
   }

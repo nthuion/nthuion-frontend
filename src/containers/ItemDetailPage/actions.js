@@ -2,8 +2,6 @@ import {
   FETCH_ITEM,
   FETCH_ITEM_SUCCESS,
   FETCH_ITEM_FAIL,
-  FETCH_COMMENTS,
-  FETCH_COMMENTS_SUCCESS,
   FETCH_COMMENTS_FAIL,
   FETCH_VOTE,
   FETCH_VOTE_SUCCESS,
@@ -26,21 +24,10 @@ export const fetchItemFail = (itemType, error) => ({
   error,
 });
 
-export const fetchComments = (itemType, qid) => ({
-  type: FETCH_COMMENTS,
-  itemType,
-  qid,
-});
-
-export const fetchCommentsSuccess = (itemType, comments) => ({
-  type: FETCH_COMMENTS_SUCCESS,
-  itemType,
-  comments,
-});
-
-export const fetchCommentsFail = (itemType, error) => ({
+export const fetchCommentsFail = (itemType, id, error) => ({
   type: FETCH_COMMENTS_FAIL,
   itemType,
+  id,
   error,
 });
 

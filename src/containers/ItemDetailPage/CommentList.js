@@ -11,7 +11,7 @@ function renderList(comments) {
   ));
 }
 
-const CommentList = ({ comments }) => (
+const CommentList = ({ comments = [] }) => (
   <Transition
     className={style.commentList}
     transitionName={style}

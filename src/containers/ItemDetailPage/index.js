@@ -7,23 +7,22 @@ import Container from '../common/Container';
 import ItemDetail from './ItemDetail';
 import CommentForm from '../CommentForm';
 import CommentList from './CommentList';
-import { fetchItem, fetchComments } from './actions';
+import { fetchItem } from './actions';
 
 class ItemDetailPage extends Component {
   static propTypes = {
     id: PropTypes.number.isRequired,
     type: PropTypes.oneOf(['issue', 'solution']).isRequired,
-    item: PropTypes.object.isRequired,
-    comments: PropTypes.array.isRequired,
+    itemsById: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
   };
   componentDidMount() {
     const { type, id } = this.props;
     this.props.dispatch(fetchItem(type, id));
-    this.props.dispatch(fetchComments(type, id));
   }
   render() {
-    const { type, item, comments, id } = this.props;
+    const { type, id, itemsById } = this.props;
+    const item = itemsById[type][id];
     if (!item) {
       return null;
     }
@@ -37,7 +36,7 @@ class ItemDetailPage extends Component {
             </Section>
             <Section>
               <Subheader>所有回應</Subheader>
-              <CommentList type={type} comments={comments} />
+              <CommentList type={type} comments={item.comments} />
             </Section>
             <Section>
               <CommentForm type={type} qid={id} />
@@ -49,7 +48,9 @@ class ItemDetailPage extends Component {
   }
 }
 
-const mapStateToProps = (state) => state.itemDetail;
+const mapStateToProps = (state) => ({
+  itemsById: state.itemCollection.itemsById,
+});
 
 export default connect(mapStateToProps)(ItemDetailPage);
 
