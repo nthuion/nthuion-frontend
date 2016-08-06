@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import DocumentTitle from 'react-document-title';
 import Subheader from 'material-ui/Subheader';
 import Section from '../common/Section';
 import Container from '../common/Container';
@@ -26,21 +27,24 @@ class ItemDetailPage extends Component {
     if (!item) {
       return null;
     }
+    const title = type === 'issue' ? `問題 #${id}` : `提案 #${id}`;
     return (
-      <div>
-        <Container>
-          <Section>
-            <ItemDetail type={type} item={item} />
-          </Section>
-          <Section>
-            <Subheader>所有回應</Subheader>
-            <CommentList type={type} comments={comments} />
-          </Section>
-          <Section>
-            <CommentForm type={type} qid={id} />
-          </Section>
-        </Container>
-      </div>
+      <DocumentTitle title={title}>
+        <div>
+          <Container>
+            <Section>
+              <ItemDetail type={type} item={item} />
+            </Section>
+            <Section>
+              <Subheader>所有回應</Subheader>
+              <CommentList type={type} comments={comments} />
+            </Section>
+            <Section>
+              <CommentForm type={type} qid={id} />
+            </Section>
+          </Container>
+        </div>
+      </DocumentTitle>
     );
   }
 }

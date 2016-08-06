@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import DocumentTitle from 'react-document-title';
 import ItemList from './ItemList';
 import Section from '../common/Section';
 import Container from '../common/Container';
@@ -22,21 +23,24 @@ class ItemListPage extends Component {
   }
   render() {
     const { type, items } = this.props;
+    const documentTitle = type === 'issue' ? '問題列表' : '提案列表';
     const title = type === 'issue' ? '所有問題' : '所有提案';
     return (
-      <div>
-        <Section>
-          <Container>
-            <Subheader>{title}</Subheader>
-            <ItemList type={type} items={items[type]} />
-          </Container>
-        </Section>
-        <Link to={`/${type[0]}/create`}>
-          <FloatingActionButton className={style.fixedActionButton}>
-            <MdCreate />
-          </FloatingActionButton>
-        </Link>
-      </div>
+      <DocumentTitle title={documentTitle}>
+        <div>
+          <Section>
+            <Container>
+              <Subheader>{title}</Subheader>
+              <ItemList type={type} items={items[type]} />
+            </Container>
+          </Section>
+          <Link to={`/${type[0]}/create`}>
+            <FloatingActionButton className={style.fixedActionButton}>
+              <MdCreate />
+            </FloatingActionButton>
+          </Link>
+        </div>
+      </DocumentTitle>
     );
   }
 }

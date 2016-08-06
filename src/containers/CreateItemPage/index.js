@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import DocumentTitle from 'react-document-title';
 import { Card, CardTitle, CardText, CardActions } from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
 import Checkbox from 'material-ui/Checkbox';
@@ -49,37 +50,39 @@ class CreateItemPage extends Component {
     const { type } = this.props;
     const title = type === 'issue' ? '新增問題' : '新增提案';
     return (
-      <Section>
-        <Container>
-          <Card>
-            <CardTitle title={title} />
-            <CardText>
-              <TextField
-                floatingLabelText="標題"
-                onChange={this.handleTitleChange}
-              /><br />
-              <TextField
-                floatingLabelText="分類標籤"
-                onChange={this.handleTagsChange}
-              /><br />
-              <Checkbox
-                label="匿名"
-                checked={this.state.is_anonymous}
-                onCheck={this.handleAnonymousChange}
-              /><br />
-              <TextField
-                floatingLabelText="內容"
-                multiLine
-                rows={7}
-                onChange={this.handleContentChange}
-              />
-            </CardText>
-            <CardActions>
-              <FlatButton label="送出" onClick={this.handleSubmit} />
-            </CardActions>
-          </Card>
-        </Container>
-      </Section>
+      <DocumentTitle title={title}>
+        <Section>
+          <Container>
+            <Card>
+              <CardTitle title={title} />
+              <CardText>
+                <TextField
+                  floatingLabelText="標題"
+                  onChange={this.handleTitleChange}
+                /><br />
+                <TextField
+                  floatingLabelText="分類標籤"
+                  onChange={this.handleTagsChange}
+                /><br />
+                <Checkbox
+                  label="匿名"
+                  checked={this.state.is_anonymous}
+                  onCheck={this.handleAnonymousChange}
+                /><br />
+                <TextField
+                  floatingLabelText="內容"
+                  multiLine
+                  rows={7}
+                  onChange={this.handleContentChange}
+                />
+              </CardText>
+              <CardActions>
+                <FlatButton label="送出" onClick={this.handleSubmit} />
+              </CardActions>
+            </Card>
+          </Container>
+        </Section>
+      </DocumentTitle>
     );
   }
 }
