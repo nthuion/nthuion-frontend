@@ -20,9 +20,10 @@ function* fetchComments({ itemType, id }) {
   return [];
 }
 
-function* fetchItem({ itemType, id }) {
+function* fetchItem(store, { itemType, id }) {
   try {
-    const item = yield call(api.get, `/api/${itemType}s/${id}`);
+    const apiToken = store.getState().auth.apiToken;
+    const item = yield call(api.get, `/api/${itemType}s/${id}`, apiToken);
     item.comments = yield call(fetchComments, { itemType, id });
     yield put(fetchItemSuccess(itemType, item));
   } catch (error) {
@@ -30,11 +31,11 @@ function* fetchItem({ itemType, id }) {
   }
 }
 
-function* watchFetchItem() {
-  yield* takeEvery(FETCH_ITEM, fetchItem);
+function* watchFetchItem(store) {
+  yield* takeEvery(FETCH_ITEM, fetchItem, store);
 }
 
-export default function* itemDetailSaga() {
-  yield fork(watchFetchItem);
+export default function* itemDetailSaga(store) {
+  yield fork(watchFetchItem, store);
 }
 

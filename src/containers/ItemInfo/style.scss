@@ -15,6 +15,10 @@
     .up-vote,
     .down-vote {
       cursor: pointer;
+
+      &.voted {
+        color: red;
+      }
     }
 
     .count {

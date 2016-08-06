@@ -7,25 +7,30 @@ import {
   fetchItemListSuccess,
   fetchItemListFail,
 } from '../containers/ItemListPage/actions';
+import {
+  fetchItem,
+} from '../containers/ItemDetailPage/actions';
 import { voteFail } from '../containers/ItemInfo/actions';
 
-function* fetchItemList({ itemType }) {
+function* fetchItemList(store, { itemType }) {
   try {
-    const { data } = yield call(api.get, `/api/${itemType}s`);
+    const apiToken = store.getState().auth.apiToken;
+    const { data } = yield call(api.get, `/api/${itemType}s`, apiToken);
     yield put(fetchItemListSuccess(itemType, data));
   } catch (error) {
     yield put(fetchItemListFail(itemType, error));
   }
 }
 
-function* watchFetchItemList() {
-  yield* takeEvery(FETCH_ITEM_LIST, fetchItemList);
+function* watchFetchItemList(store) {
+  yield* takeEvery(FETCH_ITEM_LIST, fetchItemList, store);
 }
 
 function* vote(store, { itemType, id, value }) {
   try {
     const apiToken = store.getState().auth.apiToken;
     yield call(api.put, `/api/${itemType}s/${id}/vote`, apiToken, { value });
+    yield put(fetchItem(itemType, id));
   } catch (error) {
     yield put(voteFail(itemType, error));
   }
@@ -36,7 +41,7 @@ function* watchVote(store) {
 }
 
 export default function* itemListSaga(store) {
-  yield fork(watchFetchItemList);
+  yield fork(watchFetchItemList, store);
   yield fork(watchVote, store);
 }
 

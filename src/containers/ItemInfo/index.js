@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import cx from 'classnames';
 import { Link } from 'react-router';
 import { CardTitle, CardText } from 'material-ui/Card';
 import Chip from 'material-ui/Chip';
@@ -9,6 +10,7 @@ import dateFormat from 'dateformat';
 import { upVote, downVote } from './actions';
 import style from './style.scss';
 
+/* eslint-disable camelcase */
 class ItemInfo extends Component {
   static propTypes = {
     type: PropTypes.oneOf(['issue', 'solution']).isRequired,
@@ -27,12 +29,18 @@ class ItemInfo extends Component {
     this.props.dispatch(downVote(type, id));
   };
   renderVotes = () => {
-    const { votes } = this.props.item;
+    const { votes, user_vote } = this.props.item;
     return (
       <div className={style.votes}>
-        <MdArrorUp className={style.upVote} onClick={this.handleUpVote} />
+        <MdArrorUp
+          className={cx(style.upVote, { [style.voted]: user_vote === 1 })}
+          onClick={this.handleUpVote}
+        />
         <div className={style.count}>{votes}</div>
-        <MdArrorDown className={style.downVote} onClick={this.handleDownVote} />
+        <MdArrorDown
+          className={cx(style.downVote, { [style.voted]: user_vote === -1 })}
+          onClick={this.handleDownVote}
+        />
       </div>
     );
   };
