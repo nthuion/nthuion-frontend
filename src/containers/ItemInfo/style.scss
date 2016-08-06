@@ -1,5 +1,6 @@
 .item-info {
   display: flex;
+  position: relative;
   a {
     text-decoration: none;
     flex: 1;
@@ -35,5 +36,13 @@
 
 .tag {
   margin-right: 4px;
+}
+
+.created-time {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.6);
 }
 

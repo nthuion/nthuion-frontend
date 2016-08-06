@@ -1,23 +1,26 @@
 import React, { PropTypes } from 'react';
+import dateFormat from 'dateformat';
 import { Card, CardHeader, CardText } from 'material-ui/Card';
 
-function renderHeader(author) {
+function renderHeader(author, ctime) {
+  const time = dateFormat(new Date(ctime), 'yyyy-mm-dd HH:mm:ss');
   if (author) {
     return (
       <CardHeader
         title={author.name}
+        subtitle={time}
         avatar={author.avatar_url}
       />
     );
   }
-  return <CardHeader title="匿名" />;
+  return <CardHeader title="匿名" subtitle={time} />;
 }
 
 const CommentListItem = ({ comment }) => {
-  const { author, content } = comment;
+  const { author, content, ctime } = comment;
   return (
     <Card>
-      {renderHeader(author)}
+      {renderHeader(author, ctime)}
       <CardText>
         {content}
       </CardText>

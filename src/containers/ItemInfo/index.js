@@ -5,6 +5,7 @@ import { CardTitle, CardText } from 'material-ui/Card';
 import Chip from 'material-ui/Chip';
 import MdArrorUp from 'react-icons/lib/md/keyboard-arrow-up';
 import MdArrorDown from 'react-icons/lib/md/keyboard-arrow-down';
+import dateFormat from 'dateformat';
 import { upVote, downVote } from './actions';
 import style from './style.scss';
 
@@ -43,11 +44,17 @@ class ItemInfo extends Component {
       </div>
     ));
   };
+  renderTime = () => {
+    const { ctime } = this.props.item;
+    const time = dateFormat(new Date(ctime), 'yyyy-mm-dd HH:mm:ss');
+    return <div className={style.createdTime}>{time}</div>;
+  };
   renderInfo = () => {
     const { isLink, type } = this.props;
     const { id, title, ncomments } = this.props.item;
     const info = (
       <div>
+        {this.renderTime()}
         <CardTitle title={title} subtitle={`${ncomments}則回應`} />
         <CardText>
           <div className={style.tagList}>
