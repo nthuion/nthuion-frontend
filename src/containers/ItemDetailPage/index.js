@@ -39,7 +39,7 @@ class ItemDetailPage extends Component {
               <CommentList type={type} comments={item.comments} />
             </Section>
             <Section>
-              <CommentForm type={type} qid={id} />
+              <CommentForm type={type} id={id} />
             </Section>
           </Container>
         </div>

@@ -10,7 +10,7 @@ class CommentForm extends Component {
   static propTypes = {
     type: PropTypes.oneOf(['issue', 'solution']).isRequired,
     isLogin: PropTypes.bool,
-    qid: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired,
     dispatch: PropTypes.func.isRequired,
   };
   constructor(props) {
@@ -23,12 +23,12 @@ class CommentForm extends Component {
     this.setState({ content: e.target.value });
   };
   handleSubmit = () => {
-    const { type, qid } = this.props;
+    const { type, id } = this.props;
     const { content } = this.state;
     if (content.trim() === '') {
       return;
     }
-    this.props.dispatch(sendComment(type, qid, content));
+    this.props.dispatch(sendComment(type, id, content));
     this.setState({ content: '' });
   };
   render() {

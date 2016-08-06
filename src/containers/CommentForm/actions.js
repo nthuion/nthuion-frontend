@@ -3,10 +3,10 @@ import {
   SEND_COMMENT_FAIL,
 } from './actionTypes';
 
-export const sendComment = (itemType, qid, content) => ({
+export const sendComment = (itemType, id, content) => ({
   type: SEND_COMMENT,
   itemType,
-  qid,
+  id,
   content,
 });
 

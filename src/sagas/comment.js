@@ -11,11 +11,11 @@ import {
   fetchItem,
 } from '../containers/ItemDetailPage/actions';
 
-function* sendComment(store, { itemType, qid, content }) {
+function* sendComment(store, { itemType, id, content }) {
   try {
     const apiToken = store.getState().auth.apiToken;
-    yield call(api.post, `/api/${itemType}s/${qid}/comments`, apiToken, { content });
-    yield put(fetchItem(itemType, qid));
+    yield call(api.post, `/api/${itemType}s/${id}/comments`, apiToken, { content });
+    yield put(fetchItem(itemType, id));
   } catch (error) {
     yield put(sendCommentFail(itemType, error));
   }
