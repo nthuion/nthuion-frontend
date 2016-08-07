@@ -16,6 +16,7 @@ class ItemInfo extends Component {
     type: PropTypes.oneOf(['issue', 'solution']).isRequired,
     isLink: PropTypes.bool,
     item: PropTypes.object.isRequired,
+    me: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
   };
   handleUpVote = () => {
@@ -76,18 +77,29 @@ class ItemInfo extends Component {
     }
     return info;
   };
+  renderEdit = () => {
+    const { me, type } = this.props;
+    const { id, author } = this.props.item;
+    if (me.id !== author.id) {
+      return null;
+    }
+    return <Link className={style.edit} to={`/${type[0]}/${id}/edit`}>編輯</Link>;
+  };
   render() {
-    const { type, item: { id } } = this.props;
     return (
       <div className={style.itemInfoContainer}>
         {this.renderVotes()}
         {this.renderInfo()}
         {this.renderTime()}
-        <Link className={style.edit} to={`/${type[0]}/${id}/edit`}>編輯</Link>
+        {this.renderEdit()}
       </div>
     );
   }
 }
 
-export default connect()(ItemInfo);
+const mapStateToProps = (state) => ({
+  me: state.auth.me,
+});
+
+export default connect(mapStateToProps)(ItemInfo);
 
