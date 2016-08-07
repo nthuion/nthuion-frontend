@@ -6,6 +6,7 @@ import {
 } from '../containers/CommentForm/actionTypes';
 import {
   sendCommentFail,
+  sendCommentSuccess,
 } from '../containers/CommentForm/actions';
 import {
   fetchItem,
@@ -15,6 +16,7 @@ function* sendComment(store, { itemType, id, content }) {
   try {
     const apiToken = store.getState().auth.apiToken;
     yield call(api.post, `/api/${itemType}s/${id}/comments`, apiToken, { content });
+    yield put(sendCommentSuccess());
     yield put(fetchItem(itemType, id));
   } catch (error) {
     yield put(sendCommentFail(itemType, error));

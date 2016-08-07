@@ -1,38 +1,35 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { convertToRaw } from 'draft-js';
 import { Link } from 'react-router';
 import { Card, CardTitle, CardText, CardActions } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
-import TextField from 'material-ui/TextField';
-import { sendComment } from './actions';
+import TextArea from '../Editor/TextArea';
+import { editComment, sendComment } from './actions';
 
 class CommentForm extends Component {
   static propTypes = {
     type: PropTypes.oneOf(['issue', 'solution']).isRequired,
     isLogin: PropTypes.bool,
     id: PropTypes.number.isRequired,
+    editorState: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
   };
-  constructor(props) {
-    super(props);
-    this.state = {
-      content: '',
-    };
-  }
-  handleChange = (e) => {
-    this.setState({ content: e.target.value });
+  handleChange = (editorState) => {
+    this.props.dispatch(editComment(editorState));
   };
   handleSubmit = () => {
     const { type, id } = this.props;
-    const { content } = this.state;
-    if (content.trim() === '') {
+    const contentState = this.props.editorState.getCurrentContent();
+    if (contentState.getPlainText().trim() === '') {
       return;
     }
+    const content = JSON.stringify(convertToRaw(contentState));
     this.props.dispatch(sendComment(type, id, content));
-    this.setState({ content: '' });
   };
   render() {
-    if (!this.props.isLogin) {
+    const { isLogin, editorState } = this.props;
+    if (!isLogin) {
       return (
         <CardText>
           <Link to="/login">登入</Link>
@@ -44,11 +41,8 @@ class CommentForm extends Component {
       <Card>
         <CardTitle title="留言" />
         <CardText>
-          <TextField
-            name="comment"
-            value={this.state.content}
-            multiLine
-            rows={2}
+          <TextArea
+            editorState={editorState}
             onChange={this.handleChange}
           />
         </CardText>
@@ -62,6 +56,7 @@ class CommentForm extends Component {
 
 const mapStateToProps = (state) => ({
   isLogin: !!state.auth.apiToken,
+  editorState: state.commentForm.editorState,
 });
 
 export default connect(mapStateToProps)(CommentForm);
