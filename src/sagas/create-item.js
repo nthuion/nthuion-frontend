@@ -33,7 +33,7 @@ function* editItem(store, { itemType, id, item }) {
     const apiToken = store.getState().auth.apiToken;
     yield call(api.put, `/api/${itemType}s/${id}`, apiToken, item);
     yield put(editItemSuccess(itemType));
-    yield put(push(`/${itemType[0]}`));
+    yield put(push(`/${itemType[0]}/${id}`));
   } catch (error) {
     yield put(editItemFail(itemType, error));
   }
