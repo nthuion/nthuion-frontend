@@ -37,10 +37,7 @@
   flex: 1;
   padding: 16px;
   box-sizing: border-box;
-
-  @media (max-width: 600px) {
-    width: 50%;
-  }
+  padding-right: 100px;
 
   .title {
     font-size: 24px;
@@ -70,11 +67,22 @@
 }
 
 .created-time {
-  padding: 16px;
+  position: absolute;
+  top: 16px;
+  right: 16px;
   font-size: 14px;
   color: rgba(0, 0, 0, 0.6);
   text-align: right;
-  box-sizing: border-box;
   width: 150px;
+}
+
+.edit {
+  position: absolute;
+  top: 36px;
+  right: 16px;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.8);
+  text-align: right;
+  cursor: pointer;
 }
 

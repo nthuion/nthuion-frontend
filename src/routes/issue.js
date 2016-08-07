@@ -22,6 +22,11 @@ function getRoutes(store, isLogin) {
     getComponent(nextState, callback) {
       require(['../containers/Issue/Detail'], loadModule(callback));
     },
+  }, {
+    path: ':id/edit',
+    getComponent(nextState, callback) {
+      require(['../containers/Issue/Edit'], loadModule(callback));
+    },
   }];
 }
 

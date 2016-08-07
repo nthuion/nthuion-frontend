@@ -77,11 +77,13 @@ class ItemInfo extends Component {
     return info;
   };
   render() {
+    const { type, item: { id } } = this.props;
     return (
       <div className={style.itemInfoContainer}>
         {this.renderVotes()}
         {this.renderInfo()}
         {this.renderTime()}
+        <Link className={style.edit} to={`/${type[0]}/${id}/edit`}>編輯</Link>
       </div>
     );
   }
