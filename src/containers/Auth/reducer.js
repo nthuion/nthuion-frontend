@@ -4,12 +4,14 @@ import {
   FB_LOGIN_FAIL,
   API_LOGIN_SUCCESS,
   API_LOGIN_FAIL,
+  FETCH_ME_SUCCESS,
 } from './actionTypes';
 
 const initialState = {
   fbToken: null,
   apiToken: null,
   error: null,
+  me: null,
 };
 
 const reducer = handleActions({
@@ -28,6 +30,10 @@ const reducer = handleActions({
   [API_LOGIN_FAIL]: (state, { type }) => ({
     ...state,
     error: type,
+  }),
+  [FETCH_ME_SUCCESS]: (state, { me }) => ({
+    ...state,
+    me,
   }),
 }, initialState);
 

@@ -6,12 +6,14 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from './AppBar';
 import Drawer from './Drawer';
 import FlatButton from 'material-ui/FlatButton';
+import { fetchMe } from '../Auth/actions';
 import './style.scss';
 
 class App extends Component {
   static propTypes = {
     children: PropTypes.node,
     isLogin: PropTypes.bool,
+    me: PropTypes.object,
     location: PropTypes.object,
     dispatch: PropTypes.func,
   };
@@ -20,6 +22,12 @@ class App extends Component {
     this.state = {
       open: false,
     };
+  }
+  componentDidMount() {
+    const { me } = this.props;
+    if (!me) {
+      this.props.dispatch(fetchMe());
+    }
   }
   push = (path) => {
     this.props.dispatch(push(path));
@@ -81,6 +89,7 @@ class App extends Component {
 
 const mapStateToProps = (state) => ({
   isLogin: !!state.auth.apiToken,
+  me: !!state.auth.me,
 });
 
 export default connect(mapStateToProps)(App);

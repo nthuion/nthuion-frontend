@@ -6,7 +6,7 @@ import itemDetailSaga from './item-detail';
 import commentSagas from './comment';
 
 export default function* rootSaga(store) {
-  yield fork(authSagas);
+  yield fork(authSagas, store);
   yield fork(createItemSaga, store);
   yield fork(itemListSaga, store);
   yield fork(itemDetailSaga, store);

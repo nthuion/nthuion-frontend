@@ -16,6 +16,7 @@ export function saveState(state) {
       auth: {
         fbToken: state.auth.fbToken,
         apiToken: state.auth.apiToken,
+        me: state.auth.me,
       },
     });
     localStorage.setItem('state', serializedState);
