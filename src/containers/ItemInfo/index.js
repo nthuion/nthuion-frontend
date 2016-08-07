@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import cx from 'classnames';
 import { Link } from 'react-router';
-import { CardTitle, CardText } from 'material-ui/Card';
+import { CardText } from 'material-ui/Card';
 import Chip from 'material-ui/Chip';
 import MdArrorUp from 'react-icons/lib/md/keyboard-arrow-up';
 import MdArrorDown from 'react-icons/lib/md/keyboard-arrow-down';
@@ -61,9 +61,9 @@ class ItemInfo extends Component {
     const { isLink, type } = this.props;
     const { id, title, ncomments } = this.props.item;
     const info = (
-      <div>
-        {this.renderTime()}
-        <CardTitle title={title} subtitle={`${ncomments}則回應`} />
+      <div className={style.info}>
+        <div className={style.title}>{title}</div>
+        <div className={style.subtitle}>{`${ncomments}則回應`}</div>
         <CardText>
           <div className={style.tagList}>
             {this.renderTags()}
@@ -78,9 +78,10 @@ class ItemInfo extends Component {
   };
   render() {
     return (
-      <div className={style.itemInfo}>
+      <div className={style.itemInfoContainer}>
         {this.renderVotes()}
         {this.renderInfo()}
+        {this.renderTime()}
       </div>
     );
   }

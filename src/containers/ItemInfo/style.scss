@@ -1,4 +1,4 @@
-.item-info {
+.item-info-container {
   display: flex;
   position: relative;
   a {
@@ -33,6 +33,33 @@
   }
 }
 
+.info {
+  flex: 1;
+  padding: 16px;
+  box-sizing: border-box;
+
+  @media (max-width: 600px) {
+    width: 50%;
+  }
+
+  .title {
+    font-size: 24px;
+    color: rgba(0, 0, 0, 0.870588);
+    display: block;
+    line-height: 36px;
+    word-wrap: break-word;
+
+    @media (max-width: 600px) {
+      font-size: 22px;
+    }
+  }
+  .subtitle {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.541176);
+    display: block;
+  }
+}
+
 .tag-list {
   display: flex;
   flex-wrap: wrap;
@@ -43,10 +70,11 @@
 }
 
 .created-time {
-  position: absolute;
-  top: 16px;
-  right: 16px;
+  padding: 16px;
   font-size: 14px;
   color: rgba(0, 0, 0, 0.6);
+  text-align: right;
+  box-sizing: border-box;
+  width: 150px;
 }
 
