@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import dateFormat from 'dateformat';
 import { Card, CardHeader, CardText } from 'material-ui/Card';
+import ReadOnlyText from '../Editor/ReadOnlyText';
 
 function renderHeader(author, ctime) {
   const time = dateFormat(new Date(ctime), 'yyyy-mm-dd HH:mm:ss');
@@ -22,7 +23,7 @@ const CommentListItem = ({ comment }) => {
     <Card>
       {renderHeader(author, ctime)}
       <CardText>
-        {content}
+        <ReadOnlyText content={content} />
       </CardText>
     </Card>
   );

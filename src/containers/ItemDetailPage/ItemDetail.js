@@ -1,24 +1,16 @@
 import React, { PropTypes } from 'react';
-import {
-  Editor,
-  EditorState,
-  convertFromRaw,
-} from 'draft-js';
 import { Card, CardText } from 'material-ui/Card';
 import ItemInfo from '../ItemInfo';
+import ReadOnlyText from '../Editor/ReadOnlyText';
 
-const ItemDetail = ({ type, item }) => {
-  const contentState = convertFromRaw(JSON.parse(item.content));
-  const editorState = EditorState.createWithContent(contentState);
-  return (
-    <Card>
-      <ItemInfo type={type} item={item} />
-      <CardText>
-        <Editor editorState={editorState} readOnly />
-      </CardText>
-    </Card>
-  );
-};
+const ItemDetail = ({ type, item }) => (
+  <Card>
+    <ItemInfo type={type} item={item} />
+    <CardText>
+      <ReadOnlyText content={item.content} />
+    </CardText>
+  </Card>
+);
 
 ItemDetail.propTypes = {
   type: PropTypes.oneOf(['issue', 'solution']).isRequired,
