@@ -13,7 +13,10 @@ export function loadState() {
 export function saveState(state) {
   try {
     const serializedState = JSON.stringify({
-      auth: state.auth,
+      auth: {
+        fbToken: state.auth.fbToken,
+        apiToken: state.auth.apiToken,
+      },
     });
     localStorage.setItem('state', serializedState);
   } catch (err) {

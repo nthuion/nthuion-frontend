@@ -7,11 +7,13 @@ import Checkbox from 'material-ui/Checkbox';
 import FlatButton from 'material-ui/FlatButton';
 import Section from '../common/Section';
 import Container from '../common/Container';
-import { createItem } from './actions';
+import ContentEditor from './ContentEditor';
+import { editContent, createItem } from './actions';
 
 class CreateItemPage extends Component {
   static propTypes = {
     type: PropTypes.oneOf(['issue', 'solution']).isRequired,
+    editorState: PropTypes.object,
     dispatch: PropTypes.func,
   };
   constructor(props) {
@@ -32,13 +34,16 @@ class CreateItemPage extends Component {
   handleAnonymousChange = (e, isChecked) => {
     this.setState({ is_anonymous: isChecked });
   };
-  handleContentChange = (e) => {
-    this.setState({ content: e.target.value });
+  handleContentChange = (editorState) => {
+    const { type } = this.props;
+    this.props.dispatch(editContent(type, editorState));
   };
   handleSubmit = () => {
+    const content = this.props.editorState.getCurrentContent().getPlainText();
     const item = {
       ...this.state,
       tags: this.state.tags.split(',').map((tag) => tag.trim()),
+      content,
     };
     const { type } = this.props;
     if (type === 'solution') {
@@ -47,7 +52,7 @@ class CreateItemPage extends Component {
     this.props.dispatch(createItem(type, item));
   };
   render() {
-    const { type } = this.props;
+    const { type, editorState } = this.props;
     const title = type === 'issue' ? '新增問題' : '新增提案';
     return (
       <DocumentTitle title={title}>
@@ -69,10 +74,8 @@ class CreateItemPage extends Component {
                   checked={this.state.is_anonymous}
                   onCheck={this.handleAnonymousChange}
                 /><br />
-                <TextField
-                  floatingLabelText="內容"
-                  multiLine
-                  rows={7}
+                <ContentEditor
+                  editorState={editorState}
                   onChange={this.handleContentChange}
                 />
               </CardText>
@@ -87,5 +90,9 @@ class CreateItemPage extends Component {
   }
 }
 
-export default connect()(CreateItemPage);
+const mapStateToProps = (state) => ({
+  editorState: state.createItem.editorState,
+});
+
+export default connect(mapStateToProps)(CreateItemPage);
 
