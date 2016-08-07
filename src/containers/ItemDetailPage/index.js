@@ -14,6 +14,7 @@ class ItemDetailPage extends Component {
     id: PropTypes.number.isRequired,
     type: PropTypes.oneOf(['issue', 'solution']).isRequired,
     itemsById: PropTypes.object.isRequired,
+    me: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
   };
   componentDidMount() {
@@ -21,7 +22,7 @@ class ItemDetailPage extends Component {
     this.props.dispatch(fetchItem(type, id));
   }
   render() {
-    const { type, id, itemsById } = this.props;
+    const { type, id, itemsById, me } = this.props;
     const item = itemsById[type][id];
     if (!item) {
       return null;
@@ -36,7 +37,7 @@ class ItemDetailPage extends Component {
             </Section>
             <Section>
               <Subheader>所有回應</Subheader>
-              <CommentList type={type} comments={item.comments} />
+              <CommentList type={type} me={me} comments={item.comments} />
             </Section>
             <Section>
               <CommentForm type={type} id={id} />
@@ -50,6 +51,7 @@ class ItemDetailPage extends Component {
 
 const mapStateToProps = (state) => ({
   itemsById: state.itemCollection.itemsById,
+  me: state.auth.me,
 });
 
 export default connect(mapStateToProps)(ItemDetailPage);

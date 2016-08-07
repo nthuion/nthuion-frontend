@@ -11,3 +11,12 @@
   transition: opacity 150ms $standard-curve 150ms, transform 375ms $deceleration-curve;
 }
 
+.edit {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+}
+
