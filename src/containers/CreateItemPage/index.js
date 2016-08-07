@@ -9,23 +9,34 @@ import FlatButton from 'material-ui/FlatButton';
 import Section from '../common/Section';
 import Container from '../common/Container';
 import TextArea from '../Editor/TextArea';
-import { editContent, createItem } from './actions';
+import { editContent, createItem, editItem } from './actions';
 import style from './style.scss';
 
 class CreateItemPage extends Component {
   static propTypes = {
     type: PropTypes.oneOf(['issue', 'solution']).isRequired,
+    isEdit: PropTypes.bool,
+    item: PropTypes.bool,
     editorState: PropTypes.object,
     dispatch: PropTypes.func,
   };
   constructor(props) {
     super(props);
-    this.state = {
-      title: '',
-      tags: '',
-      is_anonymous: false,
-      content: '',
-    };
+    const { isEdit } = props;
+    const { title, tags, is_anonymous } = props.item;
+    if (isEdit) {
+      this.state = {
+        title,
+        tags: tags.join(', '),
+        is_anonymous,
+      };
+    } else {
+      this.state = {
+        title: '',
+        tags: '',
+        is_anonymous: false,
+      };
+    }
   }
   handleTitleChange = (e) => {
     this.setState({ title: e.target.value });
@@ -47,15 +58,20 @@ class CreateItemPage extends Component {
       tags: this.state.tags.split(',').map((tag) => tag.trim()),
       content: JSON.stringify(convertToRaw(content)),
     };
-    const { type } = this.props;
+    const { type, isEdit, item: { id } } = this.props;
     if (type === 'solution') {
       item.is_anonymous = undefined;
     }
-    this.props.dispatch(createItem(type, item));
+    if (isEdit) {
+      this.props.dispatch(editItem(type, id, item));
+    } else {
+      this.props.dispatch(createItem(type, item));
+    }
   };
   render() {
-    const { type, editorState } = this.props;
-    const title = type === 'issue' ? '新增問題' : '新增提案';
+    const { type, isEdit, editorState } = this.props;
+    const prefix = isEdit ? '編輯' : '新增';
+    const title = type === 'issue' ? `${prefix}問題` : `${prefix}提案`;
     return (
       <DocumentTitle title={title}>
         <Section>
@@ -65,10 +81,12 @@ class CreateItemPage extends Component {
               <CardText>
                 <TextField
                   floatingLabelText="標題"
+                  value={this.state.title}
                   onChange={this.handleTitleChange}
                 /><br />
                 <TextField
                   floatingLabelText="分類標籤"
+                  value={this.state.tags}
                   onChange={this.handleTagsChange}
                 /><br />
                 <Checkbox
