@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { convertToRaw } from 'draft-js';
 import DocumentTitle from 'react-document-title';
 import { Card, CardTitle, CardText, CardActions } from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
@@ -7,8 +8,9 @@ import Checkbox from 'material-ui/Checkbox';
 import FlatButton from 'material-ui/FlatButton';
 import Section from '../common/Section';
 import Container from '../common/Container';
-import ContentEditor from './ContentEditor';
+import TextArea from '../Editor/TextArea';
 import { editContent, createItem } from './actions';
+import style from './style.scss';
 
 class CreateItemPage extends Component {
   static propTypes = {
@@ -39,11 +41,11 @@ class CreateItemPage extends Component {
     this.props.dispatch(editContent(type, editorState));
   };
   handleSubmit = () => {
-    const content = this.props.editorState.getCurrentContent().getPlainText();
+    const content = this.props.editorState.getCurrentContent();
     const item = {
       ...this.state,
       tags: this.state.tags.split(',').map((tag) => tag.trim()),
-      content,
+      content: JSON.stringify(convertToRaw(content)),
     };
     const { type } = this.props;
     if (type === 'solution') {
@@ -74,7 +76,8 @@ class CreateItemPage extends Component {
                   checked={this.state.is_anonymous}
                   onCheck={this.handleAnonymousChange}
                 /><br />
-                <ContentEditor
+                <div className={style.contentLabel}>內容</div>
+                <TextArea
                   editorState={editorState}
                   onChange={this.handleContentChange}
                 />
