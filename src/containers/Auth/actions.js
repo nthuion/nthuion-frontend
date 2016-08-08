@@ -6,6 +6,7 @@ import {
   API_LOGIN_FAIL,
   FETCH_ME,
   FETCH_ME_SUCCESS,
+  FETCH_ME_FAIL,
 } from './actionTypes';
 
 export const fbLogin = () => ({ type: FB_LOGIN });
@@ -33,5 +34,10 @@ export const fetchMe = () => ({ type: FETCH_ME });
 export const fetchMeSuccess = (me) => ({
   type: FETCH_ME_SUCCESS,
   me,
+});
+
+export const fetchMeFail = (error) => ({
+  type: FETCH_ME_FAIL,
+  error,
 });
 

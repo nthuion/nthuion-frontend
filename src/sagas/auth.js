@@ -14,6 +14,7 @@ import {
   apiLoginFail,
   fetchMe,
   fetchMeSuccess,
+  fetchMeFail,
 } from '../containers/Auth/actions';
 
 function apiLogin(fbToken) {
@@ -42,9 +43,13 @@ function* fbLoginFlow() {
 }
 
 function* apiFetchMe(store) {
-  const apiToken = store.getState().auth.apiToken;
-  const me = yield call(api.get, '/api/users/me', apiToken);
-  yield put(fetchMeSuccess(me));
+  try {
+    const apiToken = store.getState().auth.apiToken;
+    const me = yield call(api.get, '/api/users/me', apiToken);
+    yield put(fetchMeSuccess(me));
+  } catch (error) {
+    yield put(fetchMeFail(error));
+  }
 }
 
 function* watchFetchMe(store) {

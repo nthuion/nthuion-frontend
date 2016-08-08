@@ -13,7 +13,6 @@ class App extends Component {
   static propTypes = {
     children: PropTypes.node,
     isLogin: PropTypes.bool,
-    me: PropTypes.object,
     location: PropTypes.object,
     dispatch: PropTypes.func,
   };
@@ -24,10 +23,7 @@ class App extends Component {
     };
   }
   componentDidMount() {
-    const { me } = this.props;
-    if (!me) {
-      this.props.dispatch(fetchMe());
-    }
+    this.props.dispatch(fetchMe());
   }
   push = (path) => {
     this.props.dispatch(push(path));
@@ -89,7 +85,6 @@ class App extends Component {
 
 const mapStateToProps = (state) => ({
   isLogin: !!state.auth.apiToken,
-  me: !!state.auth.me,
 });
 
 export default connect(mapStateToProps)(App);

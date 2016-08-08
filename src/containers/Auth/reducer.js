@@ -5,6 +5,7 @@ import {
   API_LOGIN_SUCCESS,
   API_LOGIN_FAIL,
   FETCH_ME_SUCCESS,
+  FETCH_ME_FAIL,
 } from './actionTypes';
 
 const initialState = {
@@ -35,6 +36,7 @@ const reducer = handleActions({
     ...state,
     me,
   }),
+  [FETCH_ME_FAIL]: () => initialState,
 }, initialState);
 
 export default reducer;
