@@ -14,6 +14,8 @@ class SectionContainer extends Component {
     this.section = 0;
   }
   componentDidMount() {
+    this.section = Math.floor(window.scrollY / window.innerHeight);
+    window.scrollTo(0, window.innerHeight * this.section);
     window.addEventListener('scroll', this.handleScroll);
   }
   componentWillUnmount() {
