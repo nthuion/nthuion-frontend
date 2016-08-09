@@ -1,4 +1,5 @@
 import App from '../containers/App';
+import HomePage from '../containers/HomePage';
 import getIssueRoutes from './issue';
 import getSolutionRoutes from './solution';
 
@@ -16,14 +17,14 @@ function getRoutes(store) {
   const issueRoutes = getIssueRoutes(store, isLogin);
   const solutionRoutes = getSolutionRoutes(store, isLogin);
 
-  return {
+  return [{
+    path: '/',
+    indexRoute: {
+      component: HomePage,
+    },
+  }, {
     path: '/',
     component: App,
-    indexRoute: {
-      onEnter(nextState, replace) {
-        replace('/i');
-      },
-    },
     childRoutes: [{
       path: 'i',
       childRoutes: issueRoutes,
@@ -41,7 +42,7 @@ function getRoutes(store) {
         require(['../containers/Auth'], loadModule(callback));
       },
     }],
-  };
+  }];
 }
 
 export default getRoutes;
