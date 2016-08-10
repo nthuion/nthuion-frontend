@@ -22,7 +22,7 @@ class CreateItemPage extends Component {
   static propTypes = {
     type: PropTypes.oneOf(['issue', 'solution']).isRequired,
     isEdit: PropTypes.bool,
-    item: PropTypes.bool,
+    item: PropTypes.object,
     editorState: PropTypes.object,
     dispatch: PropTypes.func,
   };
@@ -69,11 +69,12 @@ class CreateItemPage extends Component {
       is_anonymous,
       content: JSON.stringify(convertToRaw(content)),
     };
-    const { type, isEdit, item: { id } } = this.props;
+    const { type, isEdit } = this.props;
     if (type === 'solution') {
       item.is_anonymous = undefined;
     }
     if (isEdit) {
+      const { id } = this.props.item;
       this.props.dispatch(editItem(type, id, item));
     } else {
       this.props.dispatch(createItem(type, item));
