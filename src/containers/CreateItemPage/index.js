@@ -29,8 +29,8 @@ class CreateItemPage extends Component {
   constructor(props) {
     super(props);
     const { isEdit } = props;
-    const { title, tags, is_anonymous, content } = props.item;
     if (isEdit) {
+      const { title, tags, is_anonymous, content } = props.item;
       const contentState = convertFromRaw(JSON.parse(content));
       const editorState = EditorState.createWithContent(contentState);
       this.state = {
