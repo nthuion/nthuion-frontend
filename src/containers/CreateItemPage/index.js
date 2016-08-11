@@ -63,6 +63,10 @@ class CreateItemPage extends Component {
   handleSubmit = () => {
     const { title, tags, is_anonymous, editorState } = this.state;
     const content = editorState.getCurrentContent();
+    if (title.trim() === '') {
+      this.setState({ titleError: '必填' });
+      return;
+    }
     const item = {
       title,
       tags: tags.split(',').map((tag) => tag.trim()),
@@ -96,7 +100,7 @@ class CreateItemPage extends Component {
   };
   render() {
     const { type, isEdit } = this.props;
-    const { title, tags, editorState } = this.state;
+    const { title, tags, editorState, titleError } = this.state;
     const prefix = isEdit ? '編輯' : '新增';
     const documentTitle = type === 'issue' ? `${prefix}問題` : `${prefix}提案`;
     return (
@@ -109,6 +113,7 @@ class CreateItemPage extends Component {
                 <TextField
                   floatingLabelText="標題"
                   value={title}
+                  errorText={titleError}
                   onChange={this.handleTitleChange}
                 /><br />
                 <TextField
