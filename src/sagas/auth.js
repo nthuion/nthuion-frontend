@@ -35,7 +35,7 @@ function* fbLoginFlow() {
       const { token } = yield call(apiLogin, fbToken);
       yield put(apiLoginSuccess(token));
       yield put(fetchMe());
-      yield put(replace('/'));
+      yield put(replace('/i'));
     } catch (error) {
       yield put(apiLoginFail(error));
     }
