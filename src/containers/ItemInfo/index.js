@@ -60,11 +60,12 @@ class ItemInfo extends Component {
   };
   renderInfo = () => {
     const { isLink, type } = this.props;
-    const { id, title, ncomments } = this.props.item;
+    const { id, title, author, ncomments } = this.props.item;
+    const authorName = author ? author.name : '匿名';
     const info = (
       <div className={style.info}>
         <div className={style.title}>{title}</div>
-        <div className={style.subtitle}>{`${ncomments}則回應`}</div>
+        <div className={style.subtitle}>{authorName}</div>
         <CardText>
           <div className={style.tagList}>
             {this.renderTags()}
@@ -80,7 +81,7 @@ class ItemInfo extends Component {
   renderEdit = () => {
     const { me, type } = this.props;
     const { id, author } = this.props.item;
-    if (me.id !== author.id) {
+    if (!author || me.id !== author.id) {
       return null;
     }
     return <Link className={style.edit} to={`/${type[0]}/${id}/edit`}>編輯</Link>;
