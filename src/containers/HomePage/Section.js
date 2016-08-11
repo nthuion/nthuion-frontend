@@ -1,14 +1,13 @@
 import React, { PropTypes } from 'react';
-import cx from 'classnames';
 import style from './style.scss';
 
 function Section(Component) {
-  const SectionWrapper = ({ next, previous }) => (
+  const SectionWrapper = ({ delta }) => (
     <div
-      className={cx(style.sectionWrapper, {
-        [style.next]: next,
-        [style.previous]: previous,
-      })}
+      className={style.sectionWrapper}
+      style={{
+        transform: `translateY(${100 * delta}%)`,
+      }}
     >
       <div className={style.section}>
         <Component />
@@ -16,8 +15,7 @@ function Section(Component) {
     </div>
   );
   SectionWrapper.propTypes = {
-    next: PropTypes.bool,
-    previous: PropTypes.bool,
+    delta: PropTypes.number,
   };
   return SectionWrapper;
 }

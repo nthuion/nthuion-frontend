@@ -6,6 +6,11 @@
   position: relative;
 }
 
+.section-wrapper {
+  position: absolute;
+  transition: all 1000ms;
+}
+
 .logo-container {
   position: absolute;
   left: 50%;

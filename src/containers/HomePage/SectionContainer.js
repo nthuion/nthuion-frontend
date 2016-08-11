@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import throttle from 'lodash/throttle';
-import { animateScroll } from 'react-scroll';
 import style from './style.scss';
 
 class SectionContainer extends Component {
@@ -9,59 +8,56 @@ class SectionContainer extends Component {
   };
   constructor(props) {
     super(props);
-    this.scrollY = 0;
-    this.scrolling = false;
-    this.section = 0;
+    this.state = {
+      scrolling: false,
+      section: 0,
+    };
   }
   componentDidMount() {
-    this.section = Math.floor(window.scrollY / window.innerHeight);
-    window.scrollTo(0, window.innerHeight * this.section);
-    window.addEventListener('scroll', this.handleScroll);
+    window.addEventListener('mousewheel', this.handleWheel);
   }
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll);
+    window.removeEventListener('mousewheel', this.handleWheel);
     clearTimeout(this.timer);
   }
-  scrollTo = (x, y) => {
-    this.scrolling = true;
-    animateScroll.scrollTo(y, { duration: 900 });
+  scroll = (direction) => {
+    this.setState({
+      section: this.state.section + direction,
+      scrolling: true,
+    });
     this.timer = setTimeout(() => {
-      this.scrolling = false;
+      this.setState({ scrolling: false });
     }, 1000);
   };
   scrollToNextSection = () => {
     const count = React.Children.count(this.props.children);
-    if (this.section === count - 1) {
+    if (this.state.section === count - 1) {
       return;
     }
-    this.section++;
-    this.scrollTo(0, window.innerHeight * this.section);
+    this.scroll(1);
   };
   scrollToPreviousSection = () => {
-    if (this.section === 0) {
+    if (this.state.section === 0) {
       return;
     }
     this.section--;
-    this.scrollTo(0, window.innerHeight * this.section);
+    this.scroll(-1);
   };
-  handleScroll = throttle((e) => {
-    const { scrollY } = window;
-    if (!this.scrolling) {
-      if (scrollY > this.scrollY) {
+  handleWheel = throttle((e) => {
+    const delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
+    if (!this.state.scrolling) {
+      if (delta === -1) {
         this.scrollToNextSection();
-      } else if (scrollY < this.scrollY) {
+      } else {
         this.scrollToPreviousSection();
       }
-    } else {
-      e.preventDefault();
     }
-    this.scrollY = scrollY;
   }, 100);
   render() {
+    const { section } = this.state;
     const children = React.Children.map(this.props.children, (child, i) => (
       React.cloneElement(child, {
-        next: i === this.section + 1,
-        previous: i === this.section - 1,
+        delta: i - section,
       })
     ));
     return (
