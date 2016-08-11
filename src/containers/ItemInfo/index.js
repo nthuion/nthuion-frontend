@@ -60,7 +60,7 @@ class ItemInfo extends Component {
   };
   renderInfo = () => {
     const { isLink, type } = this.props;
-    const { id, title, author, ncomments } = this.props.item;
+    const { id, title, author } = this.props.item;
     const authorName = author ? author.name : '匿名';
     const info = (
       <div className={style.info}>
