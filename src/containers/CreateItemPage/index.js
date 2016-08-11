@@ -80,9 +80,23 @@ class CreateItemPage extends Component {
       this.props.dispatch(createItem(type, item));
     }
   };
+  renderAnonymousCheckbox = () => {
+    const { type } = this.props;
+    if (type === 'solution') {
+      return null;
+    }
+    const { is_anonymous } = this.state;
+    return (
+      <Checkbox
+        label="匿名"
+        checked={is_anonymous}
+        onCheck={this.handleAnonymousChange}
+      />
+    );
+  };
   render() {
     const { type, isEdit } = this.props;
-    const { title, tags, is_anonymous, editorState } = this.state;
+    const { title, tags, editorState } = this.state;
     const prefix = isEdit ? '編輯' : '新增';
     const documentTitle = type === 'issue' ? `${prefix}問題` : `${prefix}提案`;
     return (
@@ -102,11 +116,8 @@ class CreateItemPage extends Component {
                   value={tags}
                   onChange={this.handleTagsChange}
                 /><br />
-                <Checkbox
-                  label="匿名"
-                  checked={is_anonymous}
-                  onCheck={this.handleAnonymousChange}
-                /><br />
+                {this.renderAnonymousCheckbox()}
+                <br />
                 <div className={style.contentLabel}>內容</div>
                 <TextArea
                   editorState={editorState}
