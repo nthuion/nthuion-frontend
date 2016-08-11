@@ -24,6 +24,10 @@ const config = {
       test: /\.css$|\.scss$/,
       loaders: ['style', 'css?modules&camelCase&localIdentName=[local]_[hash:base64:5]', 'postcss'],
       include: path.join(__dirname, 'src')
+    }, {
+      test: /\.png$/,
+      loader: 'url?mimetype=image/png',
+      include: path.join(__dirname, 'src'),
     }]
   },
   postcss: function() {
