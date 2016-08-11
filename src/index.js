@@ -6,11 +6,16 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import Root from './core/Root';
 import configureStore from './core/store';
+import ga from './utils/GoogleAnalytics';
 
 injectTapEventPlugin();
 
 const store = configureStore(browserHistory);
 const history = syncHistoryWithStore(browserHistory, store);
+
+history.listen((location) => {
+  ga.pageview(location.pathname);
+});
 
 render(
   <Root store={store} history={history} />,
