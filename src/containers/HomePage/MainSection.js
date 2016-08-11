@@ -1,11 +1,11 @@
 import React from 'react';
-import Section from './Section';
+import section from './Section';
 import style from './style.scss';
 import headerLogo from './images/header-logo.png';
 import headerPlanetUpper from './images/header-planet-upper.png';
 
 const MainSection = () => (
-  <Section>
+  <div>
     <div className={style.logoContainer}>
       <img
         className={style.headerLogo}
@@ -23,8 +23,8 @@ const MainSection = () => (
       <p>還在靠北校園中各種不方便的角落？</p>
       <p>何不自己來改造！</p>
     </div>
-  </Section>
+  </div>
 );
 
-export default MainSection;
+export default section(MainSection);
 

@@ -1,10 +1,10 @@
 import React from 'react';
-import Section from './Section';
+import section from './Section';
 import ScheduleRow from './ScheduleRow';
 import style from './style.scss';
 
 const Section5 = () => (
-  <Section>
+  <div>
     <div className={style.scheduleContainer}>
       <div className={style.scheduleTable}>
         <ScheduleRow from="08:50" to="09:20" event="報到" />
@@ -29,8 +29,8 @@ const Section5 = () => (
       <p>報名費全免</p>
     </div>
     <div className={style.joinTitle}>活動報名</div>
-  </Section>
+  </div>
 );
 
-export default Section5;
+export default section(Section5);
 

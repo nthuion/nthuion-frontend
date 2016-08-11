@@ -1,9 +1,9 @@
 import React from 'react';
-import Section from './Section';
+import section from './Section';
 import style from './style.scss';
 
 const Footer = () => (
-  <Section>
+  <div>
     <div className={style.footer}>
       <div className={style.organizer}>
         <p>// 主辦單位 //</p>
@@ -23,8 +23,8 @@ const Footer = () => (
         </div>
       </div>
     </div>
-  </Section>
+  </div>
 );
 
-export default Footer;
+export default section(Footer);
 

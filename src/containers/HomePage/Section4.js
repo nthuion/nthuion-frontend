@@ -1,9 +1,9 @@
 import React from 'react';
-import Section from './Section';
+import section from './Section';
 import style from './style.scss';
 
 const Section4 = () => (
-  <Section>
+  <div>
     <div className={style.beforeHackathon}>
       <h4>活動日之前</h4>
       <p>
@@ -28,8 +28,8 @@ const Section4 = () => (
         並在活動結束前讓每個團隊三分鐘成果發表。
       </p>
     </div>
-  </Section>
+  </div>
 );
 
-export default Section4;
+export default section(Section4);
 

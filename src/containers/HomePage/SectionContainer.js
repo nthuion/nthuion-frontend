@@ -24,10 +24,10 @@ class SectionContainer extends Component {
   }
   scrollTo = (x, y) => {
     this.scrolling = true;
-    animateScroll.scrollTo(y, { duration: 400 });
+    animateScroll.scrollTo(y, { duration: 900 });
     this.timer = setTimeout(() => {
       this.scrolling = false;
-    }, 500);
+    }, 1000);
   };
   scrollToNextSection = () => {
     const count = React.Children.count(this.props.children);
@@ -58,7 +58,12 @@ class SectionContainer extends Component {
     this.scrollY = scrollY;
   }, 100);
   render() {
-    const { children } = this.props;
+    const children = React.Children.map(this.props.children, (child, i) => (
+      React.cloneElement(child, {
+        next: i === this.section + 1,
+        previous: i === this.section - 1,
+      })
+    ));
     return (
       <div className={style.sectionContainer}>
         {children}

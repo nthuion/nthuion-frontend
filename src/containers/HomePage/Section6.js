@@ -1,9 +1,9 @@
 import React from 'react';
-import Section from './Section';
+import section from './Section';
 import style from './style.scss';
 
 const Section6 = () => (
-  <Section>
+  <div>
     <div className={style.precaution}>
       <p>名額有限</p>
       <ul>
@@ -17,8 +17,8 @@ const Section6 = () => (
         <p>活動當天提供電源插和無線網路</p>
       </div>
     </div>
-  </Section>
+  </div>
 );
 
-export default Section6;
+export default section(Section6);
 
