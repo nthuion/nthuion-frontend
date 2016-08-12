@@ -5,6 +5,7 @@
   width: 100%;
   height: 100%;
   position: relative;
+  background: white;
 }
 
 .section-wrapper {
@@ -107,6 +108,57 @@
   padding-top: 200px;
   padding-left: 800px;
   box-sizing: border-box;
+}
+
+.photo-container {
+  .photo-a {
+    position: absolute;
+    top: 100px;
+    right: 20%;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background-color: red;
+  }
+  .photo-b {
+    position: absolute;
+    top: 300px;
+    right: 15%;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: orange;
+  }
+  .photo-c {
+    position: absolute;
+    top: 450px;
+    right: 20%;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background-color: yellow;
+  }
+  .large-ring {
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    right: -300px;
+    bottom: -100px;
+  }
+  .medium-ring {
+    position: absolute;
+    width: 750px;
+    height: 750px;
+    right: -300px;
+    bottom: -150px;
+  }
+  .small-ring {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    right: -200px;
+    bottom: -50px;
+  }
 }
 
 .before-hackathon,
