@@ -21,6 +21,35 @@
   align-items: center;
 }
 
+.main-section-ring {
+  .large-ring,
+  .medium-ring,
+  .small-ring {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .small-ring {
+    width: 900px;
+    height: 900px;
+    bottom: -250px;
+  }
+
+  .medium-ring {
+    width: 1050px;
+    height: 1050px;
+    bottom: -350px;
+    left: 45%;
+  }
+
+  .large-ring {
+    width: 1200px;
+    height: 1200px;
+    bottom: -400px;
+  }
+}
+
 .title {
   font-size: 50px;
   padding-top: 50px;

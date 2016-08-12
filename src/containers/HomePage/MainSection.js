@@ -1,5 +1,6 @@
 import React from 'react';
 import section from './Section';
+import Ring from './Ring';
 import style from './style.scss';
 import headerLogo from './images/header-logo.png';
 import headerPlanetUpper from './images/header-planet-upper.png';
@@ -13,6 +14,11 @@ const MainSection = () => (
         alt="header-logo"
       />
       <div className={style.title}>清離子黑客松</div>
+    </div>
+    <div className={style.mainSectionRing}>
+      <Ring size="l" />
+      <Ring size="m" />
+      <Ring size="s" />
     </div>
     <img
       className={style.headerPlanetUpper}
