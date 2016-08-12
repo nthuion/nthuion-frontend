@@ -1,11 +1,9 @@
 import React from 'react';
 import section from './Section';
 import style from './style.scss';
-import lineA from './images/line-a.png';
 
 const Section4 = () => (
   <div>
-    <img className={style.lineA} src={lineA} role="presentation" />
     <div className={style.beforeHackathon}>
       <h4>活動日之前</h4>
       <p>

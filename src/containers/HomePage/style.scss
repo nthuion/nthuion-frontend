@@ -1,6 +1,7 @@
 .section-container,
 .section-wrapper,
-.section {
+.section,
+.section > div {
   width: 100%;
   height: 100%;
   position: relative;
@@ -90,21 +91,21 @@
 
 .what-is-nthuion {
   text-align: center;
-  padding-top: 500px;
+  padding-top: 400px;
   font-size: 25px;
 }
 
 .what-is-hackathon {
   position: absolute;
-  top: -100px;
-  left: -800px;
+  top: -150px;
+  left: -700px;
   background-color: #646464;
   color: white;
-  width: 1500px;
-  height: 1500px;
+  width: 1300px;
+  height: 1300px;
   border-radius: 50%;
   padding-top: 200px;
-  padding-left: 900px;
+  padding-left: 800px;
   box-sizing: border-box;
 }
 
@@ -231,9 +232,18 @@
   align-items: center;
 }
 
+.section6 {
+  display: flex;
+
+  .left,
+  .right {
+    flex: 1;
+  }
+}
+
 .precaution {
-  padding-top: 400px;
-  padding-left: 100px;
+  padding-top: 300px;
+  padding-left: 200px;
   li {
     padding-left: 20px;
   }
@@ -252,6 +262,48 @@
 .preparation {
   padding-top: 50px;
   color: rgba(0, 0, 0, 0.5);
+}
+
+.slide-box {
+  padding-top: 300px;
+}
+
+.previous-slide,
+.next-slide {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 50px;
+  &.disable {
+    color: rgba(0, 0, 0, 0.3);
+  }
+}
+
+.slide-container {
+  display: flex;
+  width: 500px;
+  height: 300px;
+  margin: auto;
+}
+
+.slide-slot {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: all 500ms;
+  text-align: center;
+
+  img {
+    height: 150px;
+  }
 }
 
 .footer {

@@ -40,7 +40,6 @@ class SectionContainer extends Component {
     if (this.state.section === 0) {
       return;
     }
-    this.section--;
     this.scroll(-1);
   };
   handleWheel = throttle((e) => {
