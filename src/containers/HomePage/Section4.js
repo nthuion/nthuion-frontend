@@ -6,6 +6,21 @@ import lineA from './images/line-a.png';
 const Section4 = () => (
   <div>
     <img className={style.lineA} src={lineA} role="presentation" />
+    <div className={style.changeSchool}>
+      <p>
+        面對校園中不方便、不滿意的角落，
+        我們該如何貫徹校訓的精神？
+        視而不見、默不吭聲，抑或上靠清發文？
+      </p>
+      <p>
+        無論是擦身而過的校巴、不美觀的校園網頁、低落的建築館舍品質，
+        校園中的許多問題，正等待身為清華一分子的我們「自強不息」，共同關注、解決。
+      </p>
+      <p>
+        你也對校園生活充滿各種想法嗎？<br />
+        讓我們一起動手改變吧！
+      </p>
+    </div>
     <div className={style.beforeHackathon}>
       <h4>活動日之前</h4>
       <p>
