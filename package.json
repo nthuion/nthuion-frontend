@@ -3,11 +3,11 @@
   "version": "0.0.0",
   "description": "frontend-template",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack && cp -r vendor/* static/",
     "lint": "npm run lint:js && npm run lint:css",
     "lint:js": "eslint ./src",
     "lint:css": "stylelint ./src/**/*.scss",
-    "dev": "node devServer.js",
+    "dev": "cp -r vendor/* static && node devServer.js",
     "start": "node server.js",
     "test": "NODE_ENV=test mocha",
     "posttest": "npm run lint"

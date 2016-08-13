@@ -7,7 +7,6 @@ const port = 3000;
 
 app.use(logger('dev'));
 app.use('/static', express.static(path.join(__dirname, 'static')));
-app.use('/vendor', express.static(path.join(__dirname, 'vendor')));
 app.use('*', (req, res) => {
   res.sendFile('index.html', {
     root: __dirname,
