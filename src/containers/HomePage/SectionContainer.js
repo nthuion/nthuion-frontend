@@ -10,14 +10,16 @@ class SectionContainer extends Component {
     super(props);
     this.state = {
       scrolling: false,
-      section: 0,
+      section: 2,
     };
   }
   componentDidMount() {
     window.addEventListener('mousewheel', this.handleWheel);
+    window.addEventListener('keydown', this.handleKeydown);
   }
   componentWillUnmount() {
     window.removeEventListener('mousewheel', this.handleWheel);
+    window.removeEventListener('keydown', this.handleKeydown);
     clearTimeout(this.timer);
   }
   scroll = (direction) => {
@@ -41,6 +43,13 @@ class SectionContainer extends Component {
       return;
     }
     this.scroll(-1);
+  };
+  handleKeydown = (e) => {
+    if (e.keyCode === 38) {
+      this.scrollToPreviousSection();
+    } else if (e.keyCode === 40) {
+      this.scrollToNextSection();
+    }
   };
   handleWheel = throttle((e) => {
     const delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
