@@ -24,6 +24,15 @@
   transition: all 1000ms;
 }
 
+.goto-top-icon {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  right: 45px;
+  bottom: 45px;
+  cursor: pointer;
+}
+
 .logo-container {
   position: absolute;
   left: 50%;

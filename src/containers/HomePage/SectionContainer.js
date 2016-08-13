@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import throttle from 'lodash/throttle';
 import style from './style.scss';
+import iconTop from './images/icon-top.png';
 
 class SectionContainer extends Component {
   static propTypes = {
@@ -10,7 +11,7 @@ class SectionContainer extends Component {
     super(props);
     this.state = {
       scrolling: false,
-      section: 2,
+      section: 0,
     };
   }
   componentDidMount() {
@@ -22,9 +23,9 @@ class SectionContainer extends Component {
     window.removeEventListener('keydown', this.handleKeydown);
     clearTimeout(this.timer);
   }
-  scroll = (direction) => {
+  scroll = (section) => {
     this.setState({
-      section: this.state.section + direction,
+      section,
       scrolling: true,
     });
     this.timer = setTimeout(() => {
@@ -36,13 +37,16 @@ class SectionContainer extends Component {
     if (this.state.section === count - 1) {
       return;
     }
-    this.scroll(1);
+    this.scroll(this.state.section + 1);
   };
   scrollToPreviousSection = () => {
     if (this.state.section === 0) {
       return;
     }
-    this.scroll(-1);
+    this.scroll(this.state.section - 1);
+  };
+  scrollToTop = () => {
+    this.scroll(0);
   };
   handleKeydown = (e) => {
     if (e.keyCode === 38) {
@@ -61,6 +65,19 @@ class SectionContainer extends Component {
       }
     }
   }, 100);
+  renderGotoTopIcon = () => {
+    if (this.state.section === 0) {
+      return null;
+    }
+    return (
+      <img
+        className={style.gotoTopIcon}
+        src={iconTop}
+        alt="go to top"
+        onClick={this.scrollToTop}
+      />
+    );
+  };
   render() {
     const { section } = this.state;
     const children = React.Children.map(this.props.children, (child, i) => (
@@ -71,6 +88,7 @@ class SectionContainer extends Component {
     return (
       <div className={style.sectionContainer}>
         {children}
+        {this.renderGotoTopIcon()}
       </div>
     );
   }
