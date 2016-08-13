@@ -10,7 +10,7 @@ class SectionContainer extends Component {
     super(props);
     this.state = {
       scrolling: false,
-      section: 2,
+      section: 0,
     };
   }
   componentDidMount() {

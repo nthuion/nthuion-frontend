@@ -15,6 +15,9 @@ const config = {
   resolve: {
     extensions: ['', '.js', '.jsx']
   },
+	externals: {
+		parallax: 'Parallax',
+	},
   module: {
     loaders: [{
       test: /\.js$|\.jsx$/,
