@@ -30,8 +30,14 @@ const MainSection = () => (
       alt="header-planet-upper"
     />
     <div className={style.headerPlanetLower}>
-      <p>還在靠北校園中各種不方便的角落？</p>
-      <p>何不自己來改造！</p>
+      <div className={style.cowbei}>
+        <p>還在靠北校園中各種不方便的角落？</p>
+        <p>何不自己來改造！</p>
+      </div>
+      <div className={style.timeLocation}>
+        <p>2016 / 9 / 28</p>
+        <p>國立清華大學台達館</p>
+      </div>
     </div>
   </div>
 );

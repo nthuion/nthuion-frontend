@@ -9,22 +9,44 @@ import Footer from './Footer';
 import SectionContainer from './SectionContainer';
 
 class HomePage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      large: window.innerWidth >= 768,
+    };
+    this.children = [
+      <MainSection />,
+      <Section2 />,
+      <Section3 />,
+      <Section4 />,
+      <Section5 />,
+      <Section6 />,
+      <Footer />,
+    ];
+  }
   componentDidMount() {
     document.body.style.overflow = 'hidden';
+    window.addEventListener('resize', this.handleResize);
   }
   componentWillUnmount() {
     document.body.style.overflow = 'auto';
+    window.removeEventListener('resize', this.handleResize);
   }
+  handleResize = () => {
+    if (window.innerWidth < 768) {
+      this.setState({ large: false });
+    } else {
+      this.setState({ large: true });
+    }
+  };
   render() {
+    const children = this.state.large ? this.children : [
+      this.children[0],
+      ...this.children.slice(2),
+    ];
     return (
       <SectionContainer>
-        <MainSection />
-        <Section2 />
-        <Section3 />
-        <Section4 />
-        <Section5 />
-        <Section6 />
-        <Footer />
+        {children}
       </SectionContainer>
     );
   }
