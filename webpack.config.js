@@ -17,6 +17,7 @@ const config = {
   },
 	externals: {
 		parallax: 'Parallax',
+		hammer: 'Hammer',
 	},
   module: {
     loaders: [{

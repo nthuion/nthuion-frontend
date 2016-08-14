@@ -17,6 +17,7 @@
 
 .section-container {
   background-color: white;
+  overflow: hidden;
 }
 
 .section-wrapper {
@@ -525,6 +526,10 @@
   width: 500px;
   height: 300px;
   margin: auto;
+
+  @media(width < 768px) {
+    width: 100%;
+  }
 }
 
 .slide-slot {

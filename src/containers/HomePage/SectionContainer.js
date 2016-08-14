@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import throttle from 'lodash/throttle';
+import Hammer from 'hammer'; // eslint-disable-line import/no-unresolved
 import style from './style.scss';
 import iconTop from './images/icon-top.png';
 
@@ -17,6 +18,9 @@ class SectionContainer extends Component {
   componentDidMount() {
     window.addEventListener('mousewheel', this.handleWheel);
     window.addEventListener('keydown', this.handleKeydown);
+    const hammer = new Hammer(document);
+    hammer.get('swipe').set({ direction: Hammer.DIRECTION_VERTICAL });
+    hammer.on('swipe', this.handleSwipe);
   }
   componentWillUnmount() {
     window.removeEventListener('mousewheel', this.handleWheel);
@@ -65,6 +69,13 @@ class SectionContainer extends Component {
       }
     }
   }, 100);
+  handleSwipe = (e) => {
+    if (e.direction === Hammer.DIRECTION_UP) {
+      this.scrollToNextSection();
+    } else if (e.direction === Hammer.DIRECTION_DOWN) {
+      this.scrollToPreviousSection();
+    }
+  };
   renderGotoTopIcon = () => {
     if (this.state.section === 0) {
       return null;
