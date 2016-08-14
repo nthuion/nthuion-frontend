@@ -8,16 +8,15 @@ const Section5 = () => (
     <div className={style.scheduleContainer}>
       <div className={style.scheduleTable}>
         <ScheduleRow from="08:50" to="09:20" event="報到" />
-        <ScheduleRow from="09:20" to="19:30" event="開場" />
-        <ScheduleRow from="09:30" to="10:00" event="3分鐘簡介(1)" />
-        <ScheduleRow from="10:00" to="10:30" event="分組媒合(1)" />
-        <ScheduleRow from="10:30" to="11:00" event="3分鐘簡介(2)" />
-        <ScheduleRow from="11:00" to="11:30" event="分組媒合(2)" />
+        <ScheduleRow from="09:20" to="09:45" event="開場" />
+        <ScheduleRow from="09:45" to="09:50" event="選課預排系統經驗分享" />
+        <ScheduleRow from="10:30" to="11:00" event="3分鐘簡介提案" />
+        <ScheduleRow from="11:00" to="11:30" event="分組媒合" />
         <ScheduleRow from="11:30" to="12:00" event="到喜歡的組別討論細節" />
         <ScheduleRow from="12:00" to="12:50" event="午餐、休息" />
-        <ScheduleRow from="12:50" to="13:00" event="簡介Hackathon" />
+        <ScheduleRow from="12:50" to="13:00" event="簡介下午流程" />
         <ScheduleRow from="13:00" to="17:00" event="Hackathon" />
-        <ScheduleRow from="17:00" to="17:50" event="分享各組成果、計畫" />
+        <ScheduleRow from="17:00" to="17:50" event="成果分享" />
         <ScheduleRow from="17:50" to="18:00" event="頒獎" />
       </div>
     </div>

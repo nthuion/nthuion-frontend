@@ -18,10 +18,10 @@ const Section6 = () => (
           <li>費用全免</li>
           <li>若有購買 T-shirt 者，活動「當天」現場付款</li>
         </ul>
-        <div className={style.joinNow}>馬上報名→</div>
+        <div className={style.joinNow}>敬請關注</div>
         <div className={style.preparation}>
           <p>主辦單位不提供電腦給參加者，請自行攜帶筆電。</p>
-          <p>活動當天提供電源插和無線網路</p>
+          <p>活動當天提供電源插座並使用學校的無線網路</p>
         </div>
       </div>
     </div>
