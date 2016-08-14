@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import DocumentTitle from 'react-document-title';
 import MainSection from './MainSection';
 import Section2 from './Section2';
 import Section3 from './Section3';
@@ -45,9 +46,11 @@ class HomePage extends Component {
       ...this.children.slice(2),
     ];
     return (
-      <SectionContainer>
-        {children}
-      </SectionContainer>
+      <DocumentTitle title="清離子黑客松">
+        <SectionContainer>
+          {children}
+        </SectionContainer>
+      </DocumentTitle>
     );
   }
 }
