@@ -21,31 +21,33 @@ const Section4 = () => (
         讓我們一起動手改變吧！
       </p>
     </div>
-    <div className={style.beforeHackathon}>
-      <h4>活動前</h4>
-      <p>
-        如果你遇到困擾，可以到平台上「提問」，
-        描述在校園中遇到的問題。
-        如果你對問題有解決的想法，則可以「提案」，
-        說明想法、做法與需要的人才。
-      </p>
-    </div>
-    <div className={style.hackathonMorning}>
-      <h4>當天媒合</h4>
-      <p>
-        活動當天早上，將進行提案簡介，
-        同時協助大家找尋各個專案需要的人才。
-        學生會同時也會在場，協助提共校方的溝通管與各種支援。
-      </p>
-    </div>
-    <div className={style.hackathonAfternoon}>
-      <h4>技術支持</h4>
-      <p>
-        活動當天，也將提供協同作業的工具教學，
-        ，讓團隊協作更具效率。
-        在實作過程中，將有無限供應的餐點與飲料。
-        結束前再由每個團隊進行成果發表。
-      </p>
+    <div className={style.threeCircle}>
+      <div className={style.beforeHackathon}>
+        <h4>活動前</h4>
+        <p>
+          如果你遇到困擾，可以到平台上「提問」，
+          描述在校園中遇到的問題。
+          如果你對問題有解決的想法，則可以「提案」，
+          說明想法、做法與需要的人才。
+        </p>
+      </div>
+      <div className={style.hackathonMorning}>
+        <h4>當天媒合</h4>
+        <p>
+          活動當天早上，將進行提案簡介，
+          同時協助大家找尋各個專案需要的人才。
+          學生會同時也會在場，協助提共校方的溝通管與各種支援。
+        </p>
+      </div>
+      <div className={style.hackathonAfternoon}>
+        <h4>技術支持</h4>
+        <p>
+          活動當天，也將提供協同作業的工具教學，
+          ，讓團隊協作更具效率。
+          在實作過程中，將有無限供應的餐點與飲料。
+          結束前再由每個團隊進行成果發表。
+        </p>
+      </div>
     </div>
   </div>
 );

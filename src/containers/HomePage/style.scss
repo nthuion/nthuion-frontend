@@ -176,6 +176,7 @@
     width: 100%;
     height: 100%;
     padding: 10px;
+    padding-top: 50px;
     color: #555;
     font-size: 18px;
     line-height: 30px;
@@ -249,6 +250,10 @@
   position: absolute;
   right: 0;
   bottom: 200px;
+
+  @media(width < 768px) {
+    display: none;
+  }
 }
 
 .change-school {
@@ -260,6 +265,14 @@
 
   @media(width < 768px) {
     display: none;
+  }
+}
+
+.three-circle {
+  @media(width < 768px) {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
 }
 
@@ -283,24 +296,49 @@
     margin: 0;
     font-size: 20px;
   }
+
+  @media(width < 768px) {
+    position: relative;
+    margin: auto;
+    width: 100%;
+    height: auto;
+    flex: 1;
+    border-radius: 0;
+    padding: 10px;
+  }
 }
 
 .before-hackathon {
   left: 20%;
   bottom: 100px;
   background-color: #0F9573;
+
+  @media(width < 768px) {
+    top: 0;
+    left: 0;
+  }
 }
 
 .hackathon-morning {
   top: 10%;
   right: 30%;
   background-color: #496AA5;
+
+  @media(width < 768px) {
+    top: 0;
+    right: 0;
+  }
 }
 
 .hackathon-afternoon {
   right: 10%;
   bottom: 50px;
   background-color: #0F98AB;
+
+  @media(width < 768px) {
+    top: 0;
+    right: 0;
+  }
 }
 
 .schedule-container {
@@ -309,10 +347,18 @@
   box-sizing: border-box;
   display: flex;
   align-items: center;
+
+  @media(width < 768px) {
+    padding: 0;
+  }
 }
 
 .schedule-table {
   width: 400px;
+
+  @media(width < 768px) {
+    width: 100%;
+  }
 }
 
 .schedule-row {
@@ -325,6 +371,10 @@
   background-color: #ddd;
   margin: 5px;
   padding: 10px 25px;
+
+  @media(width < 768px) {
+    font-size: 14px;
+  }
 }
 
 .schedule-event {
@@ -344,6 +394,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media(width < 768px) {
+    display: none;
+  }
 }
 
 .location {
@@ -369,6 +423,10 @@
       margin-bottom: 20px;
     }
   }
+
+  @media(width < 768px) {
+    display: none;
+  }
 }
 
 .join-title {
@@ -384,6 +442,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media(width < 768px) {
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -150px;
+    width: 120px;
+    height: 120px;
+  }
 }
 
 .section6 {
@@ -393,6 +459,10 @@
   .right {
     flex: 1;
   }
+
+  @media(width < 768px) {
+    flex-direction: column;
+  }
 }
 
 .precaution {
@@ -401,6 +471,15 @@
   li {
     padding-left: 20px;
   }
+
+  @media(width < 768px) {
+    padding: 0 10px;
+    padding-top: 150px;
+  }
+}
+
+.admit {
+  padding-left: 16px;
 }
 
 .join-now {
@@ -411,11 +490,19 @@
   text-align: center;
   padding: 10px 20px;
   border-radius: 5px;
+
+  @media(width < 768px) {
+    margin: auto;
+  }
 }
 
 .preparation {
-  padding-top: 50px;
+  padding-top: 30px;
   color: rgba(0, 0, 0, 0.5);
+
+  @media(width < 768px) {
+    text-align: center;
+  }
 }
 
 .slide-box {
@@ -469,7 +556,12 @@
   color: white;
   text-align: center;
   padding-top: 50px;
+  padding-bottom: 50px;
   box-sizing: border-box;
+  
+  @media(width < 768px) {
+    height: auto;
+  }
 }
 
 .coOrganizer {
@@ -478,6 +570,11 @@
 
   div {
     flex: 1;
+  }
+
+  @media(width < 768px) {
+    padding: 10px;
+    flex-direction: column;
   }
 }
 

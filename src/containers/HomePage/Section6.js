@@ -12,7 +12,7 @@ const Section6 = () => (
   <div className={style.section6}>
     <div className={style.left}>
       <div className={style.precaution}>
-        <p>名額有限</p>
+        <p className={style.admit}>名額有限，先報名先錄取！</p>
         <ul>
           <li>報告前請詳細閱讀活動規章</li>
           <li>費用全免</li>
@@ -20,8 +20,14 @@ const Section6 = () => (
         </ul>
         <div className={style.joinNow}>敬請關注</div>
         <div className={style.preparation}>
-          <p>主辦單位不提供電腦給參加者，請自行攜帶筆電。</p>
-          <p>活動當天提供電源插座並使用學校的無線網路</p>
+          <p>
+            主辦單位不提供電腦給參加者，
+            請自行攜帶筆電。
+          </p>
+          <p>
+            活動當天提供電源插座
+            並使用學校的無線網路
+          </p>
         </div>
       </div>
     </div>
