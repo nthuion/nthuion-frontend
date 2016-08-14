@@ -11,7 +11,7 @@ class SectionContainer extends Component {
     super(props);
     this.state = {
       scrolling: false,
-      section: 3,
+      section: 0,
     };
   }
   componentDidMount() {
