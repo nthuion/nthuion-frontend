@@ -519,6 +519,10 @@
 
 .slide-box {
   padding-top: 300px;
+
+  @media(width < 768px) {
+    padding-top: 0;
+  }
 }
 
 .previous-slide,
@@ -540,6 +544,7 @@
 
   @media(width < 768px) {
     width: 100%;
+    height: 200%;
   }
 }
 
