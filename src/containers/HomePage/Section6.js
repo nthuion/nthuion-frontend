@@ -34,10 +34,38 @@ const Section6 = () => (
     <div className={style.right}>
       <div className={style.slideBox}>
         <SlideContainer>
-          <Slide image={slideA} text="AAA" />
-          <Slide image={slideB} text="BBB" />
-          <Slide image={slideC} text="CCC" />
-          <Slide image={slideD} text="DDD" />
+          <Slide
+            image={slideA}
+            title="可以先偷跑"
+            text={`
+            如果已經迫不急待想執行，或是正在進行的專案，
+            歡迎帶著目前的成果來與大家交流！"
+            `}
+          />
+          <Slide
+            image={slideB}
+            title="定期舉辦"
+            text={`
+            透過定期舉辦，更讓每個專案都能永續運作，
+            將成果回饋到校園中的一草一木。
+            `}
+          />
+          <Slide
+            image={slideC}
+            title="不用一天做出成果"
+            text={`
+            活動當天只是一個開始，做好可行的時程規劃，
+            在課餘時間約出來小型黑客松一下。
+            `}
+          />
+          <Slide
+            image={slideD}
+            title="不以比賽為導向"
+            text={`
+            除了減少競爭敵意，並讓交流加深加廣之外，
+            也避免淪為追求名次而進行的表面功夫。
+            `}
+          />
         </SlideContainer>
       </div>
     </div>
