@@ -2,6 +2,7 @@ import React from 'react';
 import section from './Section';
 import ScheduleRow from './ScheduleRow';
 import style from './style.scss';
+import lineB from './images/line-b.png';
 
 const Section5 = () => (
   <div>
@@ -20,6 +21,7 @@ const Section5 = () => (
         <ScheduleRow from="17:50" to="18:00" event="頒獎" />
       </div>
     </div>
+    <img className={style.lineB} src={lineB} role="presentation" />
     <div className={style.scheduleTitle}>活動流程</div>
     <div className={style.location}>
       <p>2016 / 9 / 28</p>
