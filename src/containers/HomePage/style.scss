@@ -406,6 +406,10 @@
   top: 30px;
   width: 100%;
   height: 130%;
+
+  @media(width < 768px) {
+    display: none;
+  }
 }
 
 .location {
