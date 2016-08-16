@@ -182,6 +182,10 @@
     font-size: 18px;
     line-height: 30px;
   }
+
+  @media(height > 850px) {
+    height: 1500px;
+  }
 }
 
 .photo-container {
