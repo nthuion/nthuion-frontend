@@ -34,10 +34,10 @@ const Section6 = () => (
     <div className={style.right}>
       <div className={style.slideBox}>
         <SlideContainer>
-          <Slide image={slideA} text="AAA" />
-          <Slide image={slideB} text="BBB" />
-          <Slide image={slideC} text="CCC" />
-          <Slide image={slideD} text="DDD" />
+          <Slide image={slideA} text="可以先偷跑" />
+          <Slide image={slideB} text="定期舉辦" />
+          <Slide image={slideC} text="不用一天做出成果" />
+          <Slide image={slideD} text="不以比賽為導向" />
         </SlideContainer>
       </div>
     </div>
