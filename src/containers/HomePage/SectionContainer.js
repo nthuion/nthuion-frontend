@@ -16,6 +16,7 @@ class SectionContainer extends Component {
     };
   }
   componentDidMount() {
+    window.addEventListener('DOMMouseScroll', this.handleWheel);
     window.addEventListener('mousewheel', this.handleWheel);
     window.addEventListener('keydown', this.handleKeydown);
     const hammer = new Hammer(document);
@@ -23,6 +24,7 @@ class SectionContainer extends Component {
     hammer.on('swipe', this.handleSwipe);
   }
   componentWillUnmount() {
+    window.removeEventListener('DOMMouseScroll', this.handleWheel);
     window.removeEventListener('mousewheel', this.handleWheel);
     window.removeEventListener('keydown', this.handleKeydown);
     clearTimeout(this.timer);
