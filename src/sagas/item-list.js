@@ -16,7 +16,7 @@ function* fetchItemList(store, { itemType, params }) {
   try {
     const apiToken = store.getState().auth.apiToken;
     const { data } = yield call(api.get, `/api/${itemType}s`, apiToken, params);
-    yield put(fetchItemListSuccess(itemType, data));
+    yield put(fetchItemListSuccess(itemType, data, params));
   } catch (error) {
     yield put(fetchItemListFail(itemType, error));
   }

@@ -25,6 +25,11 @@ class ItemListPage extends Component {
       limit: 10,
       offset: 0,
     });
+    this.fetchItemList({
+      ordering: 'popularity',
+      limit: 5,
+      offset: 0,
+    });
     window.addEventListener('scroll', this.handleScroll);
   }
   componentWillUnmount() {
@@ -43,7 +48,7 @@ class ItemListPage extends Component {
     this.fetchItemList({
       ordering: 'latest',
       limit: 10,
-      offset: allItems[type].length,
+      offset: allItems[type].latest.length,
     });
   };
   handleScroll = throttle(() => {
@@ -58,8 +63,12 @@ class ItemListPage extends Component {
     const { type, itemCollection } = this.props;
     const { allItems, itemsById } = itemCollection;
     const documentTitle = type === 'issue' ? '問題列表' : '提案列表';
-    const title = type === 'issue' ? '所有問題' : '所有提案';
-    const items = allItems[type].map((item) => (
+    const latestTitle = type === 'issue' ? '所有問題' : '所有提案';
+    const popularTitle = type === 'issue' ? '熱門問題' : '熱門提案';
+    const latestItemList = allItems[type].latest.map((item) => (
+      itemsById[type][item]
+    ));
+    const popularItemList = allItems[type].popularity.map((item) => (
       itemsById[type][item]
     ));
     return (
@@ -67,8 +76,14 @@ class ItemListPage extends Component {
         <div>
           <Section>
             <Container>
-              <Subheader>{title}</Subheader>
-              <ItemList type={type} items={items} />
+              <Subheader>{popularTitle}</Subheader>
+              <ItemList type={type} items={popularItemList} />
+            </Container>
+          </Section>
+          <Section>
+            <Container>
+              <Subheader>{latestTitle}</Subheader>
+              <ItemList type={type} items={latestItemList} />
             </Container>
           </Section>
           <Link to={`/${type[0]}/create`}>

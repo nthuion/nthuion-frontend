@@ -10,10 +10,11 @@ export const fetchItemList = (itemType, params) => ({
   itemType,
   params,
 });
-export const fetchItemListSuccess = (itemType, items) => ({
+export const fetchItemListSuccess = (itemType, items, params) => ({
   type: FETCH_ITEM_LIST_SUCCESS,
   itemType,
   items,
+  params,
 });
 export const fetchItemListFail = (itemType, error) => ({
   type: FETCH_ITEM_LIST_FAIL,

@@ -7,8 +7,14 @@ import {
 
 const initialState = {
   fetching: false,
-  issue: [],
-  solution: [],
+  issue: {
+    latest: [],
+    popularity: [],
+  },
+  solution: {
+    latest: [],
+    popularity: [],
+  },
 };
 
 const reducer = handleActions({
@@ -16,11 +22,17 @@ const reducer = handleActions({
     ...state,
     fetching: true,
   }),
-  [FETCH_ITEM_LIST_SUCCESS]: (state, { itemType, items }) => ({
-    ...state,
-    fetching: false,
-    [itemType]: [...state[itemType], ...items.map((item) => item.id)],
-  }),
+  [FETCH_ITEM_LIST_SUCCESS]: (state, { itemType, items, params }) => {
+    const { ordering } = params;
+    return {
+      ...state,
+      fetching: false,
+      [itemType]: {
+        ...state[itemType],
+        [ordering]: [...state[itemType][ordering], ...items.map((item) => item.id)],
+      },
+    };
+  },
   [FETCH_ITEM_LIST_FAIL]: (state) => ({
     ...state,
     fetching: false,
