@@ -12,10 +12,10 @@ import {
 } from '../containers/ItemDetailPage/actions';
 import { voteFail } from '../containers/ItemInfo/actions';
 
-function* fetchItemList(store, { itemType }) {
+function* fetchItemList(store, { itemType, params }) {
   try {
     const apiToken = store.getState().auth.apiToken;
-    const { data } = yield call(api.get, `/api/${itemType}s`, apiToken);
+    const { data } = yield call(api.get, `/api/${itemType}s`, apiToken, params);
     yield put(fetchItemListSuccess(itemType, data));
   } catch (error) {
     yield put(fetchItemListFail(itemType, error));

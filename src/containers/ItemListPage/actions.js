@@ -5,9 +5,10 @@ import {
 } from './actionTypes';
 
 
-export const fetchItemList = (itemType) => ({
+export const fetchItemList = (itemType, params) => ({
   type: FETCH_ITEM_LIST,
   itemType,
+  params,
 });
 export const fetchItemListSuccess = (itemType, items) => ({
   type: FETCH_ITEM_LIST_SUCCESS,

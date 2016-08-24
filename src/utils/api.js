@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch';
+import querystring from 'querystring';
 
 const BASE_URL = window.API_URL;
 
@@ -29,8 +30,8 @@ function request(method, path, token, data) {
 }
 
 const api = {
-  get(path, token) {
-    return request('GET', path, token);
+  get(path, token, params) {
+    return request('GET', `${path}?${querystring.stringify(params)}`, token);
   },
   post(path, token, data) {
     return request('POST', path, token, data);

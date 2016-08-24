@@ -1,7 +1,9 @@
 import React, { Component, PropTypes } from 'react';
+import { findDOMNode } from 'react-dom';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import DocumentTitle from 'react-document-title';
+import throttle from 'lodash/throttle';
 import ItemList from './ItemList';
 import Section from '../common/Section';
 import Container from '../common/Container';
@@ -18,9 +20,40 @@ class ItemListPage extends Component {
     dispatch: PropTypes.func.isRequired,
   };
   componentDidMount() {
-    const { type } = this.props;
-    this.props.dispatch(fetchItemList(type));
+    this.fetchItemList({
+      ordering: 'latest',
+      limit: 10,
+      offset: 0,
+    });
+    window.addEventListener('scroll', this.handleScroll);
   }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
+  fetchItemList = (params) => {
+    const { type } = this.props;
+    const { fetching } = this.props.itemCollection;
+    if (!fetching) {
+      this.props.dispatch(fetchItemList(type, params));
+    }
+  };
+  fetchMoreItems = () => {
+    const { type } = this.props;
+    const { allItems } = this.props.itemCollection;
+    this.fetchItemList({
+      ordering: 'latest',
+      limit: 10,
+      offset: allItems[type].length,
+    });
+  };
+  handleScroll = throttle(() => {
+    const node = findDOMNode(this);
+    const clientHeight = node.clientHeight;
+    const { scrollY, innerHeight } = window;
+    if (scrollY + innerHeight > clientHeight + 50) {
+      this.fetchMoreItems();
+    }
+  }, 100);
   render() {
     const { type, itemCollection } = this.props;
     const { allItems, itemsById } = itemCollection;
