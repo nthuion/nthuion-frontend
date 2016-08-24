@@ -2,6 +2,7 @@ import App from '../containers/App';
 import HomePage from '../containers/HomePage';
 import getIssueRoutes from './issue';
 import getSolutionRoutes from './solution';
+import getUserRoutes from './user';
 
 /* eslint-disable global-require */
 export function loadModule(callback) {
@@ -16,6 +17,7 @@ function getRoutes(store) {
   }
   const issueRoutes = getIssueRoutes(store, isLogin);
   const solutionRoutes = getSolutionRoutes(store, isLogin);
+  const userRoutes = getUserRoutes(store, isLogin);
 
   return [{
     path: '/',
@@ -31,6 +33,9 @@ function getRoutes(store) {
     }, {
       path: 's',
       childRoutes: solutionRoutes,
+    }, {
+      path: 'u',
+      childRoutes: userRoutes,
     }, {
       path: 'login',
       onEnter(nextState, replace) {

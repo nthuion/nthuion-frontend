@@ -1,8 +1,9 @@
+/* eslint-disable */
+
 const GA_SCRIPT_SRC = 'https://www.google-analytics.com/analytics.js';
 const GA_SCRIPT_SRC_DEV = 'https://www.google-analytics.com/analytics_debug.js';
 const GA_TRACK_ID = 'UA-81689023-1';
 
-/* eslint-disable */
 class GoogleAnalytics {
   constructor() {
     const script = process.env.NODE_ENV === 'production' ? GA_SCRIPT_SRC : GA_SCRIPT_SRC_DEV;
