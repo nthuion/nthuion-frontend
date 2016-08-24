@@ -25,6 +25,45 @@
   transition: all 1000ms;
 }
 
+.menu-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  font-size: 25px;
+  padding-top: 100px;
+}
+
+.menu-line {
+  height: 1px;
+  width: 50%;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  background-color: black;
+}
+
+.menu-item {
+  cursor: pointer;
+}
+
+.menu-icon {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  right: 24px;
+  bottom: 100px;
+  cursor: pointer;
+  transition: bottom 200ms ease-in;
+
+  &.first {
+    bottom: 45px;
+  }
+}
+
 .goto-top-icon {
   position: absolute;
   width: 48px;

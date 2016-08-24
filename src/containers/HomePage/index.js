@@ -24,6 +24,19 @@ class HomePage extends Component {
       <Section6 />,
       <Footer />,
     ];
+    this.menu = [{
+      name: '簡介',
+      section: 1,
+    }, {
+      name: '活動',
+      section: 3,
+    }, {
+      name: '流程',
+      section: 4,
+    }, {
+      name: '報名',
+      section: 5,
+    }];
   }
   componentDidMount() {
     document.body.style.overflow = 'hidden';
@@ -47,7 +60,7 @@ class HomePage extends Component {
     ];
     return (
       <DocumentTitle title="清離子黑客松">
-        <SectionContainer>
+        <SectionContainer menu={this.menu}>
           {children}
         </SectionContainer>
       </DocumentTitle>

@@ -1,12 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 import throttle from 'lodash/throttle';
 import Hammer from 'hammer'; // eslint-disable-line import/no-unresolved
+import Menu from './Menu';
 import style from './style.scss';
 import iconTop from './images/icon-top.png';
 
 class SectionContainer extends Component {
   static propTypes = {
     children: PropTypes.node,
+    menu: PropTypes.array,
   };
   constructor(props) {
     super(props);
@@ -93,6 +95,7 @@ class SectionContainer extends Component {
   };
   render() {
     const { section } = this.state;
+    const { menu } = this.props;
     const children = React.Children.map(this.props.children, (child, i) => (
       React.cloneElement(child, {
         delta: i - section,
@@ -101,6 +104,11 @@ class SectionContainer extends Component {
     return (
       <div className={style.sectionContainer}>
         {children}
+        <Menu
+          menu={menu}
+          first={this.state.section === 0}
+          onItemClick={this.scroll}
+        />
         {this.renderGotoTopIcon()}
       </div>
     );
