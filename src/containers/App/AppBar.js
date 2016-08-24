@@ -6,11 +6,18 @@ import FlatButton from 'material-ui/FlatButton';
 class AppBar extends Component {
   static propTypes = {
     isLogin: PropTypes.bool,
+    me: PropTypes.object,
     handleOpen: PropTypes.func,
   };
   renderLoginButton = () => {
-    if (this.props.isLogin) {
-      return null;
+    const { isLogin, me } = this.props;
+    if (isLogin) {
+      return (
+        <FlatButton
+          label={me.name}
+          containerElement={<Link to="/u/me" />}
+        />
+      );
     }
     return (
       <FlatButton

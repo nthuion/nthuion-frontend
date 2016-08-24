@@ -13,6 +13,7 @@ class App extends Component {
   static propTypes = {
     children: PropTypes.node,
     isLogin: PropTypes.bool,
+    me: PropTypes.object,
     location: PropTypes.object,
     dispatch: PropTypes.func,
   };
@@ -64,11 +65,11 @@ class App extends Component {
     />
   );
   render() {
-    const { children, isLogin, location } = this.props;
+    const { children, isLogin, me, location } = this.props;
     return (
       <MuiThemeProvider>
         <div>
-          <AppBar isLogin={isLogin} handleOpen={this.handleOpen} />
+          <AppBar isLogin={isLogin} me={me} handleOpen={this.handleOpen} />
           {children}
           <Drawer
             open={this.state.open}
@@ -85,6 +86,7 @@ class App extends Component {
 
 const mapStateToProps = (state) => ({
   isLogin: !!state.auth.apiToken,
+  me: state.auth.me,
 });
 
 export default connect(mapStateToProps)(App);
