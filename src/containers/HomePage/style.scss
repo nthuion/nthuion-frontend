@@ -539,12 +539,15 @@
 
 .join-now {
   background-color: #EB6100;
-  color: white;
   width: 150px;
   font-size: 21px;
   text-align: center;
   padding: 10px 20px;
   border-radius: 5px;
+  
+  a {
+    color: white;
+  }
 
   @media(width < 768px) {
     margin: auto;
@@ -622,6 +625,15 @@
   padding-top: 50px;
   padding-bottom: 50px;
   box-sizing: border-box;
+
+  p {
+    margin: 10px;
+  }
+  
+  a {
+    color: white;
+    text-decoration: underline;
+  }
   
   @media(width < 768px) {
     height: auto;

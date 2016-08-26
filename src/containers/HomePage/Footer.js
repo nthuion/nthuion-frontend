@@ -8,6 +8,18 @@ const Footer = () => (
       <div className={style.organizer}>
         <p>// 主辦單位 //</p>
         <p>清離子</p>
+        <p>Email</p>
+        <p>
+          <a href="mailto:nthuion@gmail.com">
+            nthuion@gmail.com
+          </a>
+        </p>
+        <p>粉專</p>
+        <p>
+          <a href="https://www.facebook.com/nthuion">
+            https://www.facebook.com/nthuion
+          </a>
+        </p>
       </div>
       <div className={style.coOrganizer}>
         <div>

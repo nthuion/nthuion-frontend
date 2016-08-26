@@ -18,7 +18,14 @@ const Section6 = () => (
           <li>費用全免</li>
           <li>若有購買 T-shirt 者，活動「當天」現場付款</li>
         </ul>
-        <div className={style.joinNow}>敬請關注</div>
+        <div className={style.joinNow}>
+          <a
+            target="_blank"
+            href="http://nthuion.kktix.cc/events/nthuion-hackath0n"
+          >
+            馬上報名→
+          </a>
+        </div>
         <div className={style.preparation}>
           <p>
             主辦單位不提供電腦給參加者，

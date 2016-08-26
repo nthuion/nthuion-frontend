@@ -24,19 +24,9 @@ class HomePage extends Component {
       <Section6 />,
       <Footer />,
     ];
-    this.menu = [{
-      name: '簡介',
-      section: 1,
-    }, {
-      name: '活動',
-      section: 3,
-    }, {
-      name: '流程',
-      section: 4,
-    }, {
-      name: '報名',
-      section: 5,
-    }];
+    this.menu = ['簡介', '活動', '流程', '報名'];
+    this.largeMenuSection = [1, 3, 4, 5];
+    this.smallMenuSection = [1, 2, 3, 4];
   }
   componentDidMount() {
     document.body.style.overflow = 'hidden';
@@ -58,9 +48,14 @@ class HomePage extends Component {
       this.children[0],
       ...this.children.slice(2),
     ];
+    const menu = this.menu.map((m, i) => ({
+      name: m,
+      section: this.state.large ?
+        this.largeMenuSection[i] : this.smallMenuSection[i],
+    }));
     return (
       <DocumentTitle title="清離子黑客松">
-        <SectionContainer menu={this.menu}>
+        <SectionContainer menu={menu}>
           {children}
         </SectionContainer>
       </DocumentTitle>
