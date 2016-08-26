@@ -14,9 +14,12 @@ const Footer = () => (
             nthuion@gmail.com
           </a>
         </p>
-        <p>粉專</p>
+        <p>粉絲專頁</p>
         <p>
-          <a href="https://www.facebook.com/nthuion">
+          <a
+            target="_blank"
+            href="https://www.facebook.com/nthuion"
+          >
             https://www.facebook.com/nthuion
           </a>
         </p>

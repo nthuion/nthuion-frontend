@@ -14,8 +14,8 @@ const Section6 = () => (
       <div className={style.precaution}>
         <p className={style.admit}>名額有限，先報名先錄取！</p>
         <ul>
-          <li>報告前請詳細閱讀活動規章</li>
-          <li>費用全免</li>
+          <li>報名前請詳細閱讀活動規章</li>
+          <li>報名費用全免</li>
           <li>若有購買 T-shirt 者，活動「當天」現場付款</li>
         </ul>
         <div className={style.joinNow}>
@@ -32,8 +32,11 @@ const Section6 = () => (
             請自行攜帶筆電。
           </p>
           <p>
-            活動當天提供電源插座
+            活動當天提供電源插座，
             並使用學校的無線網路
+          </p>
+          <p>
+            建議攜帶個人環保餐具，一起愛地球！
           </p>
         </div>
       </div>
@@ -45,8 +48,8 @@ const Section6 = () => (
             image={slideA}
             title="可以先偷跑"
             text={`
-            如果已經迫不急待想執行，或是正在進行的專案，
-            歡迎帶著目前的成果來與大家交流！"
+            如果已經迫不及待想執行，或是正在進行的專案，
+            歡迎帶著目前的成果來與大家交流！
             `}
           />
           <Slide

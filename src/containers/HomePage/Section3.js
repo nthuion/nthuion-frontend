@@ -9,7 +9,7 @@ const Section3 = () => (
   <div className={style.section3}>
     <div className={style.whatIsHackathon}>
       <p>
-        黑客松(Hackthon)堪稱近年來最熱門的程式設計活動。
+        黑客松 (Hackathon) 堪稱近年來最熱門的程式設計活動。
         在黑客松裡，程式設計師與其他相關的人員相聚在一起。
         無論是設計師、行銷、專案經理，彼此緊密合作進行各種開發專案。
       </p>

@@ -25,10 +25,10 @@ const Section4 = () => (
       <div className={style.beforeHackathon}>
         <h4>活動前</h4>
         <p>
-          如果你遇到困擾，可以到平台上「提問」，
-          描述在校園中遇到的問題。
-          如果你對問題有解決的想法，則可以「提案」，
-          說明想法、做法與需要的人才。
+          活動開始前，如果你對校園問題有解決的想法，
+          請到提案登記表登記「提案」，
+          說明解決方案與需要人才。
+          提案方式請參考提案流程。
         </p>
       </div>
       <div className={style.hackathonMorning}>
