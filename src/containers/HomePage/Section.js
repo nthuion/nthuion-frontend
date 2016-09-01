@@ -10,7 +10,7 @@ function Section(Component) {
       }}
     >
       <div className={style.section}>
-        <Component />
+        <Component active={delta === 0} />
       </div>
     </div>
   );
