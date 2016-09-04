@@ -4,8 +4,9 @@ import Ring from './Ring';
 import ParallaxScene from './ParallaxScene';
 import ParallaxItem from './ParallaxItem';
 import style from './style.scss';
+import cx from 'classnames';
 
-const Section3 = () => (
+const Section3 = ({ active }) => (
   <div className={style.section3}>
     <div className={style.whatIsHackathon}>
       <p>
@@ -28,9 +29,9 @@ const Section3 = () => (
       <ParallaxItem depth={0.2}><Ring size="s" /></ParallaxItem>
     </ParallaxScene>
     <div className={style.photoContainer}>
-      <div className={style.photoA} />
-      <div className={style.photoB} />
-      <div className={style.photoC} />
+      <div className={cx(style.photoA, { [style.reveal]: active })} />
+      <div className={cx(style.photoB, { [style.reveal]: active })} />
+      <div className={cx(style.photoC, { [style.reveal]: active })} />
     </div>
   </div>
 );
