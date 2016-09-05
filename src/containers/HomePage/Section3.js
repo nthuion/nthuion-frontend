@@ -36,5 +36,9 @@ const Section3 = ({ active }) => (
   </div>
 );
 
+Section3.propTypes = {
+  active: React.PropTypes.bool,
+};
+
 export default section(Section3);
 
