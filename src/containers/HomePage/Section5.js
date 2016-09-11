@@ -25,7 +25,7 @@ const Section5 = () => (
     <div className={style.scheduleTitle}>活動流程</div>
     <div className={style.location}>
       <p>2016 / 9 / 28</p>
-      <p>國立清華大學台達館</p>
+      <p>國立清華大學資電館</p>
       <p>參加對象: 清大在校生</p>
       <p>報名費全免</p>
     </div>

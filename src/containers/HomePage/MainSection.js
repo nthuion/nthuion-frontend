@@ -36,7 +36,7 @@ const MainSection = () => (
       </div>
       <div className={style.timeLocation}>
         <p>2016 / 9 / 28</p>
-        <p>國立清華大學台達館</p>
+        <p>國立清華大學資電館</p>
       </div>
     </div>
   </div>
